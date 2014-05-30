@@ -1,21 +1,23 @@
 UA Journey Calculator
 =====================
 
-Gphoto2 2.5.2 compiler and installer script v0.2
+Calculadora de la jornada laboral para PAS de la UA
+
 http://github.com/gonzalo/UAJourneyCalc
 
 Creado y mantenido por Gonzalo Cao Cabeza de Vaca
+
 Feedback y comentarios a gonzalo.cao(at)gmail.com
 
 
 Como usar
-==========
+---------
 Desarga la aplicación donde quieras y abre con tu navegador preferido 
 el archivo index.html
 
 
 LICENSE AND DISCLAIMER
-======================
+----------------------
 
 Esta aplicación NO ES OFICIAL. Sólo un ejercicio para ayudarte a calcular
 las horas de entrada y salida del trabajo. Intento que coincida con los 
