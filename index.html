@@ -3,149 +3,161 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 <title>Calculadora horas de entrada y salida para la UA</title>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="js/jquery-dateFormat.min.js"></script>
-<script src="js/jquery.timepicker.min.js"></script>
-<script src="js/UAJourneyCalc.js"></script>
-<script src="js/bootstrap.min.js"></script>
+
 <link rel="stylesheet" type="text/css" href="css/jquery.timepicker.min.css"/>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
 <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css"/>
+<!--<link rel="stylesheet" type="text/css" href="css/sticky-footer.css">-->
+    
 
 </head>
 <body role="document">
-    <div class="container theme-showcase" role="main">
+    <div class="container">
 
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
-        <h1>Calculadora jornadas UA</h1>
+            <div class="page-header">
+                <h2>Calculadora jornada laboral para PAS de la UA</h2>
+            </div>
+            <div class="alert alert-warning">AVISO: Esta aplicación NO ES OFICIAL. Sólo un ejercicio para ayudarte a calcular
+las horas de entrada y salida del trabajo. Intento que coincida con los 
+criterios que establece la UA pero si quieres asegurarte comprueba a través
+de tu campus virtual que está cumpliendo tus horas.</div>
+    
+
+
+        <form role="form" class="form-horizontal">
+            <div class="page-header">
+                <h3>Configuración horario</h3>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="jornada_normal" >Jornada normal</label>
+                <div class="col-sm-2">
+                  <input type="text" id="jornada_normal" class="form-control"></input>
+                </div>
+                <label  class="col-sm-3 control-label" for="dias_habiles">Días hábiles de la semana</label>
+                <div class="col-sm-1">
+                    <input type="text" id="dias_habiles" class="form-control"></input>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="descuento_entrada">Descuento al fichar la entrada</label>
+                <div class="col-sm-1">
+                    <input  class="form-control" type="text" id="descuento_entrada"></input>
+                </div>
+                <label class="col-sm-4 control-label" for="incremento_salida">Incremento al fichar la salida</label>
+                <div class="col-sm-1">
+                    <input  class="form-control" type="text" id="incremento_salida"></input>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="reduccion">Reducción horaria</label>
+                <div class="col-sm-3">
+                <select class="form-control" id="reduccion"></select>
+                </div>
+            </div>
+
+            <div class="page-header">
+                <h3>Datos entradas/salidas</h3>
+            </div>
+            <h4>Mañanas</h4>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="hora_entrada">Hora oficial entrada</label>
+                <div class="col-sm-2">
+                    <input class="form-control" type="text" id="hora_entrada"></input>
+                </div>
+                <label class="col-sm-3 control-label" for="hora_fichaje_entrada">Hora al fichar entrada</label>
+                <div class="col-sm-2">
+                    <input class="form-control" type="text" id="hora_fichaje_entrada"></input>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="hora_salida">Hora oficial salida</label>
+                <div class="col-sm-2">
+                    <input class="form-control" type="text" id="hora_salida"></input>
+                </div>
+                <label class="col-sm-3 control-label" for="hora_fichaje_salida">Hora al fichar salida</label>
+                <div class="col-sm-2">
+                    <input class="form-control" type="text" id="hora_fichaje_salida"></input>
+                </div>
+            </div>
+
+            <h4>Tarde</h4>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="realiza_tarde">¿Realiza tarde?</label>
+                <div class="col-sm-2">
+                <select class="form-control" id="realiza_tarde"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="hora_entrada_tarde">Hora oficial entrada</label>
+                <div class="col-sm-2">
+                    <input class="form-control" type="text" id="hora_entrada_tarde"></input>
+                </div>
+                <label class="col-sm-3 control-label" for="hora_fichaje_entrada_tarde">Hora al fichar entrada</label>
+                <div class="col-sm-2">
+                    <input class="form-control" type="text" id="hora_fichaje_entrada_tarde"></input>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="hora_salida_tarde">Hora oficial salida</label>
+                <div class="col-sm-2">
+                    <input class="form-control" type="text" id="hora_salida_tarde"></input>
+                </div>
+                <label class="col-sm-3 control-label" for="hora_fichaje_salida_tarde">Hora al fichar salida</label>
+                <div class="col-sm-2">
+                    <input class="form-control" type="text" id="hora_fichaje_salida_tarde"></input>
+                </div>
+            </div>
+
+            <div class="page-header">
+                <h3>Resultados</h3>
+            </div>
+            <div class="form-group">
+
+            </div>
+            <div class="form-group">
+                <label  class="col-sm-3 control-label" for="horas_manyana">Horas hechas de mañana</label>
+                <div class="col-sm-2">
+                    <input type="text" id="horas_manyana" class="form-control" disabled="disabled"></input>
+                </div>
+                <label class="col-sm-3 control-label" for="total_horas" >Horas semanales a cumplir</label>
+                <div class="col-sm-2">
+                  <input type="text" id="total_horas" class="form-control" disabled="disabled"></input>
+                </div>            
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="horas_tarde">Horas hechas de tarde</label>
+                <div class="col-sm-2">
+                    <input  class="form-control" type="text" id="horas_tarde" disabled="disabled"></input>
+                </div>
+                <label class="col-sm-3 control-label" for="horas_realizadas">Total horas realizadas</label>
+                <div class="col-sm-2">
+                    <input  class="form-control" type="text" id="horas_realizadas" disabled="disabled"></input>
+                </div>
+            </div> 
+            <div class="form-group">
+                <label class="col-sm-8 control-label" for="balance_horas">Balance de horas exigidas/realizadas</label>
+                <div class="col-sm-2">
+                    <input  class="form-control" type="text" id="balance_horas" disabled="disabled"></input>
+                </div>
+            </div>      
+
+            <div class="alert" id="evaluacion" style="text-align: center"></div>
+
+        </form>
+
+        <div class="alert alert-info" style="text-align: center">Creado y mantenido por Gonzalo Cao Cabeza de Vaca 
+            <a href="https://github.com/gonzalo/UAJourneyCalc">Proyecto en GitHub</a>
+        </div>
     </div>
 
+    <!-- Bootstrap core JavaScript
+        ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="js/jquery-dateFormat.min.js"></script>
+    <script src="js/jquery.timepicker.min.js"></script>
+    <script src="js/UAJourneyCalc.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 
-    <form role="form" class="form-horizontal">
-        <div class="page-header">
-            <h3>Configuración horario</h3>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-3 control-label" for="jornada_normal" >Jornada normal</label>
-            <div class="col-sm-2">
-              <input type="text" id="jornada_normal" class="form-control"></input>
-            </div>
-        </div>
-        <div class="form-group">
-            <label  class="col-sm-3 control-label" for="dias_habiles">Días hábiles de la semana</label>
-            <div class="col-sm-1">
-                <input type="text" id="dias_habiles" class="form-control"></input>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-3 control-label" for="reduccion">Reducción horaria</label>
-            <div class="col-sm-3">
-            <select class="form-control" id="reduccion"></select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-3 control-label" for="descuento_entrada">Descuento al fichar la entrada</label>
-            <div class="col-sm-1">
-                <input  class="form-control" type="text" id="descuento_entrada"></input>
-            </div>
-        </div> 
-        <div class="form-group">
-            <label class="col-sm-3 control-label" for="incremento_salida">Incremento al fichar la salida</label>
-            <div class="col-sm-1">
-                <input  class="form-control" type="text" id="incremento_salida"></input>
-            </div>
-        </div>
-        <div class="page-header">
-            <h3>Datos entradas/salidas</h3>
-        </div>
-        <h4>Mañanas</h4>
-        <div class="form-group">
-            <label class="col-sm-3 control-label" for="hora_entrada">Hora oficial entrada</label>
-            <div class="col-sm-2">
-                <input class="form-control" type="text" id="hora_entrada"></input>
-            </div>
-            <label class="col-sm-3 control-label" for="hora_fichaje_entrada">Hora al fichar entrada</label>
-            <div class="col-sm-2">
-                <input class="form-control" type="text" id="hora_fichaje_entrada"></input>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-3 control-label" for="hora_salida">Hora oficial salida</label>
-            <div class="col-sm-2">
-                <input class="form-control" type="text" id="hora_salida"></input>
-            </div>
-            <label class="col-sm-3 control-label" for="hora_fichaje_salida">Hora al fichar salida</label>
-            <div class="col-sm-2">
-                <input class="form-control" type="text" id="hora_fichaje_salida"></input>
-            </div>
-        </div>
-
-        <h4>Tarde</h4>
-        <div class="form-group">
-            <label class="col-sm-3 control-label" for="realiza_tarde">¿Realiza tarde?</label>
-            <div class="col-sm-2">
-            <select class="form-control" id="realiza_tarde"></select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-3 control-label" for="hora_entrada_tarde">Hora oficial entrada</label>
-            <div class="col-sm-2">
-                <input class="form-control" type="text" id="hora_entrada_tarde"></input>
-            </div>
-            <label class="col-sm-3 control-label" for="hora_fichaje_entrada_tarde">Hora al fichar entrada</label>
-            <div class="col-sm-2">
-                <input class="form-control" type="text" id="hora_fichaje_entrada_tarde"></input>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-3 control-label" for="hora_salida_tarde">Hora oficial salida</label>
-            <div class="col-sm-2">
-                <input class="form-control" type="text" id="hora_salida_tarde"></input>
-            </div>
-            <label class="col-sm-3 control-label" for="hora_fichaje_salida_tarde">Hora al fichar salida</label>
-            <div class="col-sm-2">
-                <input class="form-control" type="text" id="hora_fichaje_salida_tarde"></input>
-            </div>
-        </div>
-
-        <div class="page-header">
-            <h3>Resultados</h3>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-3 control-label" for="total_horas" >Horas semanales a cumplir</label>
-            <div class="col-sm-2">
-              <input type="text" id="total_horas" class="form-control" disabled="disabled"></input>
-            </div>
-        </div>
-        <div class="form-group">
-            <label  class="col-sm-3 control-label" for="horas_manyana">Horas hechas de mañana</label>
-            <div class="col-sm-2">
-                <input type="text" id="horas_manyana" class="form-control" disabled="disabled"></input>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-3 control-label" for="horas_tarde">Horas hechas de tarde</label>
-            <div class="col-sm-2">
-                <input  class="form-control" type="text" id="horas_tarde" disabled="disabled"></input>
-            </div>
-        </div> 
-        <div class="form-group">
-            <label class="col-sm-3 control-label" for="horas_realizadas">Total horas realizadas</label>
-            <div class="col-sm-2">
-                <input  class="form-control" type="text" id="horas_realizadas" disabled="disabled"></input>
-            </div>
-        </div>   
-        <div class="form-group">
-            <label class="col-sm-3 control-label" for="balance_horas">Balance de horas</label>
-            <div class="col-sm-2">
-                <input  class="form-control" type="text" id="balance_horas" disabled="disabled"></input>
-            </div>
-        </div>      
-        
-            <div class="alert" id="evaluacion" style="text-align: center"></div>
-        
-    </form>
-</div>
 </body>
 </html>

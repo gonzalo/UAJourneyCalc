@@ -23,8 +23,8 @@ $(document).ready(function () {
     $("#realiza_tarde").append('<option value="">No</option>');
     $("#hora_entrada_tarde").val("16:00");
     $("#hora_fichaje_entrada_tarde").val("16:15"); //OJO que coincida con hora_entrada+descuento_entrada
-    $("#hora_salida_tarde").val("18:30");
-    $("#hora_fichaje_salida_tarde").val("18:20");  //OJO que coincida con hora_salida-descuento_salida
+    $("#hora_salida_tarde").val("19:10");
+    $("#hora_fichaje_salida_tarde").val("10:00");  //OJO que coincida con hora_salida-descuento_salida
     
     //inicializar los disparadaores en los inputs básicos
     $("#jornada_normal").change(function () {updateEvent("#jornada_normal"); });
@@ -34,7 +34,6 @@ $(document).ready(function () {
     $("#incremento_salida").change(function () {updateEvent("#descuento_salida"); });
     $("#realiza_tarde").change(function () {updateEvent("#realiza_tarde"); });
 
-    //inicializar timepickers
     $('#hora_entrada').timepicker({ 
         timeFormat: 'HH:mm',
         minHour:    7,
@@ -242,7 +241,7 @@ function updateResults(){
         //Cumplimos perfectamente con el horario
         $('#evaluacion').html("");
         $( "#evaluacion" ).removeClass( "alert-info alert-danger alert-warning" ).addClass( "alert-success" );
-        $('#evaluacion').html("¡Perfecto! Cumples exactamente con el horario establecido");
+        $('#evaluacion').html("<strong>¡Perfecto!</strong> Cumples exactamente con el horario establecido");
     }else if (balance>0){
         //estamos haciendo horas de menos debemos compensar horario
         $('#evaluacion').html("");

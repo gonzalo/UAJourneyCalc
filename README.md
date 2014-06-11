@@ -1,4 +1,4 @@
-UA Journey Calculator
+UA Journey Calculator 
 =====================
 
 Calculadora de la jornada laboral para PAS de la UA
@@ -15,6 +15,15 @@ Como usar
 ---------
 Descarga la aplicación donde quieras y abre con tu navegador preferido 
 el archivo index.html
+
+Changelog
+---------
+2014/06/11 - v0.5
+Primera versión funcional. Permite parametrizar las horas de entrada y salida 
+y las supone iguales para todos los días de la semana. Sólo sirve para horarios
+de mañana puesto que supone que sólo se trabaja una tarde. 
+Realiza los ajustes correspondientes en caso de reducción horaria y ofrece
+una evaluación indicando si se cumplen las horas adecuadamente.
 
 LICENSE AND DISCLAIMER
 ----------------------
