@@ -173,14 +173,12 @@ function updateEvent(caller_id, value){
                                     $("#hora_entrada_tarde").prop("disabled",false);
                                     $("#hora_fichaje_entrada_tarde").prop("disabled",false);
                                     $("#hora_salida_tarde").prop("disabled",false);
-                                    $("#hora_fichaje_salida_tarde").prop("disabled",false);
-                                    $("#horas_tarde").prop("disabled",false);
+                                    $("#hora_fichaje_salida_tarde").prop("disabled",false);                                    
                                 } else {
                                     $("#hora_entrada_tarde").prop("disabled",true);
                                     $("#hora_fichaje_entrada_tarde").prop("disabled",true);
                                     $("#hora_salida_tarde").prop("disabled",true);
                                     $("#hora_fichaje_salida_tarde").prop("disabled",true);
-                                    $("#horas_tarde").prop("disabled",true);
                                 }
     }
     
@@ -231,22 +229,30 @@ function updateResults(){
     
     $('#horas_tarde').val(minutes2hours_str(total_minutos_tarde));
     
-    // 3. Calculamos el balance de horas
-    var balance = total_minutos_semanales - total_minutos_manyana - total_minutos_tarde;
+    // 3. Calculamos total horas realizadas el balance de horas
+    var total_minutos_realizados = total_minutos_manyana + total_minutos_tarde;
+    var balance = total_minutos_semanales - total_minutos_realizados;
 
+    $('#horas_realizadas').val(minutes2hours_str(total_minutos_realizados));
     $('#balance_horas').val(minutes2hours_str(balance));
     
     // 4. Analizamos los resultados
     
     if (balance==0){
         //Cumplimos perfectamente con el horario
-        $('#evaluacion').html("Cumples exactamente con el horario establecido");
+        $('#evaluacion').html("");
+        $( "#evaluacion" ).removeClass( "alert-info alert-danger alert-warning" ).addClass( "alert-success" );
+        $('#evaluacion').html("¡Perfecto! Cumples exactamente con el horario establecido");
     }else if (balance>0){
         //estamos haciendo horas de menos debemos compensar horario
-        $('#evaluacion').html("Realizas MENOS horas de las debidas. Te faltan " + minutes2hours_str(balance));
+        $('#evaluacion').html("");
+        $("#evaluacion" ).removeClass( "alert-info alert-success alert-warning" ).addClass( "alert-danger" );
+        $('#evaluacion').html("<strong>¡Atención!</strong> Realizas MENOS horas de las debidas. Te faltan " + minutes2hours_str(balance));
     } else {
         //estamos haciendo horas de más debemos compensar horario
-        $('#evaluacion').html("Realizas MÁS horas de las debidas. Te sobran " + minutes2hours_str(balance));
+        $('#evaluacion').html("");
+        $( "#evaluacion" ).removeClass( "alert-info alert-danger alert-success" ).addClass( "alert-warning" );
+        $('#evaluacion').html("<strong>¡Atención!</strong> Realizas MÁS horas de las debidas. Te sobran " + minutes2hours_str(balance));
     }
     
     return true;
