@@ -7,9 +7,9 @@ http://github.com/gonzalo/UAJourneyCalc
 Creado y mantenido por Gonzalo Cao Cabeza de Vaca
 Feedback y comentarios a gonzalo.cao(at)gmail.com
 
-Descarga
+Pruebaló
 --------
-https://github.com/gonzalo/UAJourneyCalc/archive/master.zip
+http://gonzalo.github.io/UAJourneyCalc/
 
 Como usar
 ---------
@@ -18,6 +18,10 @@ el archivo index.html
 
 Changelog
 ---------
+2014/06/13 - v0.6
+Ahora se puede calcular la jornada tanto si eres de turno de mañana
+como de tarde. Cambios estéticos.
+
 2014/06/11 - v0.5
 Primera versión funcional. Permite parametrizar las horas de entrada y salida 
 y las supone iguales para todos los días de la semana. Sólo sirve para horarios
