@@ -11,14 +11,14 @@ Pruebalo
 --------
 http://gonzalo.github.io/UAJourneyCalc/
 
-Como usar
----------
+Instalación
+-----------
 Descarga la aplicación donde quieras y abre con tu navegador preferido 
 el archivo index.html
 
 Changelog
 ---------
-2014/06/13 - v0.6
+2014/06/18 - v0.6
 Ahora se puede calcular la jornada tanto si eres de turno de mañana
 como de tarde. Cambios estéticos.
 
