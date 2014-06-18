@@ -22,6 +22,7 @@ $(document).ready(function () {
     $("#dias_habiles").append('<option value="5" selected="selected">5</option>');
     
     
+    $("#div_realiza_manyana").hide();
     $("#realiza_manyana").prop('disabled',true);
     $("#realiza_manyana").append('<option value="1" selected="selected">Sí</option>');
     $("#realiza_manyana").append('<option value="">No</option>');    
@@ -189,11 +190,16 @@ function updateEvent(caller_id, value){
         case "#turno":          turno = $("#turno").val();
                                 if (turno=="manyana") contraturno="tarde";
                                 else contraturno="manyana";
-                                //desactivamos el selector ¿realiza mañana?
+            
+                                //desactivamos el selector y lo ocultamos
                                 $("#realiza_" + turno).prop("disabled",true);
                                 $("#realiza_" + turno).val("1");
                                 toggleInterval(turno);
+                                $("#div_realiza_"+turno).hide();
+            
+                                //activamos el otro y lo mostramos
                                 $("#realiza_" + contraturno).prop("disabled",false);
+                                $("#div_realiza_"+contraturno).show();
                                 break;
             
     }

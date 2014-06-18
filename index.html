@@ -28,7 +28,7 @@ de tu campus virtual que está cumpliendo tus horas.</div>
                 <div class="panel-heading">Configuración horario</div>
                 <div class="panel-body">
                     <div class="form-group">                    
-                        <label class="col-sm-2 control-label" for="jornada_normal" >Jornada normal</label>
+                        <label class="col-sm-2 control-label" for="jornada_normal" >¿Cuánto dura la jornada establecida?</label>
                         <div class="col-sm-2">
                           <input type="text" id="jornada_normal" class="form-control"></input>
                         </div>
@@ -42,17 +42,17 @@ de tu campus virtual que está cumpliendo tus horas.</div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="turno">Turno</label>
+                        <label class="col-sm-2 control-label" for="turno">¿Qué turno trabajas?</label>
                         <div class="col-sm-2">
                             <select class="form-control" id="turno"></select>
                         </div>
-                        <label  class="col-sm-2 control-label" for="dias_habiles">Días hábiles por sem.</label>
+                        <label  class="col-sm-2 control-label" for="dias_habiles">¿Cuántos días laborables tiene esta semana?</label>
                         <div class="col-sm-2">
                             <select class="form-control" id="dias_habiles"></select>
                         </div>                        
                     </div>
                     <div class="form-group">                        
-                        <label class="col-sm-2 control-label" for="reduccion">Reducción horaria</label>
+                        <label class="col-sm-2 control-label" for="reduccion">¿Tienes activa alguna reducción horaria?</label>
                         <div class="col-sm-2">
                             <select class="form-control" id="reduccion"></select>
                         </div>
@@ -66,8 +66,8 @@ de tu campus virtual que está cumpliendo tus horas.</div>
                 <div class="panel-body">
 
                     <h4>Horario mañana</h4>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label" for="realiza_manyana">¿Realiza mañana?</label>
+                    <div class="form-group" id="div_realiza_manyana">
+                        <label class="col-sm-3 control-label" for="realiza_manyana">¿Haces alguna mañana?</label>
                         <div class="col-sm-2">
                         <select class="form-control" id="realiza_manyana"></select>
                         </div>
@@ -94,8 +94,8 @@ de tu campus virtual que está cumpliendo tus horas.</div>
                     </div>
 
                     <h4>Horario tarde</h4>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label" for="realiza_tarde">¿Realiza tarde?</label>
+                    <div class="form-group" id="div_realiza_tarde">
+                        <label class="col-sm-3 control-label" for="realiza_tarde">¿Haces alguna tarde?</label>
                         <div class="col-sm-2">
                         <select class="form-control" id="realiza_tarde"></select>
                         </div>

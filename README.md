@@ -7,7 +7,7 @@ http://github.com/gonzalo/UAJourneyCalc
 Creado y mantenido por Gonzalo Cao Cabeza de Vaca
 Feedback y comentarios a gonzalo.cao(at)gmail.com
 
-Pruebaló
+Pruebalo
 --------
 http://gonzalo.github.io/UAJourneyCalc/
 
