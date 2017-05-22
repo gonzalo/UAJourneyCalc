@@ -17,17 +17,17 @@
                 <h2>Calculadora jornada laboral para PAS de la UA</h2>
             </div>
             <div class="alert alert-warning">AVISO: Esta aplicación NO ES OFICIAL. Sólo un ejercicio para ayudarte a calcular
-las horas de entrada y salida del trabajo. Intento que coincida con los 
+las horas de entrada y salida del trabajo. Intento que coincida con los
 criterios que establece la UA pero si quieres asegurarte comprueba a través
 de tu campus virtual que está cumpliendo tus horas.</div>
-    
+
 
 
         <form role="form" class="form-horizontal">
             <div class="panel panel-default">
                 <div class="panel-heading">Configuración horario</div>
                 <div class="panel-body">
-                    <div class="form-group">                    
+                    <div class="form-group">
                         <label class="col-sm-2 control-label" for="jornada_normal" >¿Cuánto dura la jornada establecida?</label>
                         <div class="col-sm-2">
                           <input type="text" id="jornada_normal" class="form-control"></input>
@@ -49,9 +49,9 @@ de tu campus virtual que está cumpliendo tus horas.</div>
                         <label  class="col-sm-2 control-label" for="dias_habiles">¿Cuántos días laborables tiene esta semana?</label>
                         <div class="col-sm-2">
                             <select class="form-control" id="dias_habiles"></select>
-                        </div>                        
+                        </div>
                     </div>
-                    <div class="form-group">                        
+                    <div class="form-group">
                         <label class="col-sm-2 control-label" for="reduccion">¿Tienes activa alguna reducción horaria?</label>
                         <div class="col-sm-2">
                             <select class="form-control" id="reduccion"></select>
@@ -59,7 +59,7 @@ de tu campus virtual que está cumpliendo tus horas.</div>
                     </div>
 
                 </div>
-            </div>    
+            </div>
 
             <div class="panel panel-default">
                 <div class="panel-heading">Datos entradas/salidas</div>
@@ -73,23 +73,23 @@ de tu campus virtual que está cumpliendo tus horas.</div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label" for="hora_entrada">Hora oficial entrada</label>
+                        <label class="col-sm-3 control-label" for="hora_oficial_entrada">Hora oficial entrada</label>
                         <div class="col-sm-2">
-                            <input class="form-control" type="text" id="hora_entrada"></input>
+                            <input class="form-control" type="text" id="hora_oficial_entrada"></input>
                         </div>
-                        <label class="col-sm-3 control-label" for="hora_fichaje_entrada">Hora al fichar entrada</label>
+                        <label class="col-sm-3 control-label" for="hora_real_entrada">Hora al fichar entrada</label>
                         <div class="col-sm-2">
-                            <input class="form-control" type="text" id="hora_fichaje_entrada"></input>
+                            <input class="form-control" type="text" id="hora_real_entrada"></input>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label" for="hora_salida">Hora oficial salida</label>
+                        <label class="col-sm-3 control-label" for="hora_oficial_salida">Hora oficial salida</label>
                         <div class="col-sm-2">
-                            <input class="form-control" type="text" id="hora_salida"></input>
+                            <input class="form-control" type="text" id="hora_oficial_salida"></input>
                         </div>
-                        <label class="col-sm-3 control-label" for="hora_fichaje_salida">Hora al fichar salida</label>
+                        <label class="col-sm-3 control-label" for="hora_real_salida">Hora al fichar salida</label>
                         <div class="col-sm-2">
-                            <input class="form-control" type="text" id="hora_fichaje_salida"></input>
+                            <input class="form-control" type="text" id="hora_real_salida"></input>
                         </div>
                     </div>
 
@@ -101,23 +101,23 @@ de tu campus virtual que está cumpliendo tus horas.</div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label" for="hora_entrada_tarde">Hora oficial entrada</label>
+                        <label class="col-sm-3 control-label" for="hora_oficial_entrada_tarde">Hora oficial entrada</label>
                         <div class="col-sm-2">
-                            <input class="form-control" type="text" id="hora_entrada_tarde"></input>
+                            <input class="form-control" type="text" id="hora_oficial_entrada_tarde"></input>
                         </div>
-                        <label class="col-sm-3 control-label" for="hora_fichaje_entrada_tarde">Hora al fichar entrada</label>
+                        <label class="col-sm-3 control-label" for="hora_real_entrada_tarde">Hora al fichar entrada</label>
                         <div class="col-sm-2">
-                            <input class="form-control" type="text" id="hora_fichaje_entrada_tarde"></input>
+                            <input class="form-control" type="text" id="hora_real_entrada_tarde"></input>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label" for="hora_salida_tarde">Hora oficial salida</label>
+                        <label class="col-sm-3 control-label" for="hora_oficial_salida_tarde">Hora oficial salida</label>
                         <div class="col-sm-2">
-                            <input class="form-control" type="text" id="hora_salida_tarde"></input>
+                            <input class="form-control" type="text" id="hora_oficial_salida_tarde"></input>
                         </div>
-                        <label class="col-sm-3 control-label" for="hora_fichaje_salida_tarde">Hora al fichar salida</label>
+                        <label class="col-sm-3 control-label" for="hora_real_salida_tarde">Hora al fichar salida</label>
                         <div class="col-sm-2">
-                            <input class="form-control" type="text" id="hora_fichaje_salida_tarde"></input>
+                            <input class="form-control" type="text" id="hora_real_salida_tarde"></input>
                         </div>
                     </div>
                 </div>
@@ -137,7 +137,7 @@ de tu campus virtual que está cumpliendo tus horas.</div>
                     <label class="col-sm-3 control-label" for="total_horas" >Horas semanales a cumplir</label>
                     <div class="col-sm-2">
                       <input type="text" id="total_horas" class="form-control" disabled="disabled"></input>
-                    </div>            
+                    </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label" for="horas_tarde">Horas hechas de tarde</label>
@@ -148,18 +148,18 @@ de tu campus virtual que está cumpliendo tus horas.</div>
                     <div class="col-sm-2">
                         <input  class="form-control" type="text" id="horas_realizadas" disabled="disabled"></input>
                     </div>
-                </div> 
+                </div>
                 <div class="form-group">
                     <label class="col-sm-8 control-label" for="balance_horas">Balance de horas exigidas/realizadas</label>
                     <div class="col-sm-2">
                         <input  class="form-control" type="text" id="balance_horas" disabled="disabled"></input>
                     </div>
-                </div>      
+                </div>
 
             </div>
         </form>
 
-        <div class="alert alert-info" style="text-align: center">Creado y mantenido por Gonzalo Cao Cabeza de Vaca 
+        <div class="alert alert-info" style="text-align: center">Creado y mantenido por Gonzalo Cao Cabeza de Vaca
             <a href="https://github.com/gonzalo/UAJourneyCalc">Proyecto en GitHub</a>
         </div>
     </div>
