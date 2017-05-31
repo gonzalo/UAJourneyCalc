@@ -1,4 +1,10 @@
 
+//GLOBAL
+
+//VARIABLE PARA SABER CUAL FUE EL ÚLTIMO PICKER fijado
+
+var ultimo_valor_fijado = "#hora_oficial_entrada"
+var calcula_automaticamente = true;
 
 //inicializador del JS
 $(document).ready(function () {
@@ -36,7 +42,7 @@ $(document).ready(function () {
     $("#hora_oficial_entrada_tarde").val("16:00");
     $("#hora_real_entrada_tarde").val("16:15"); //OJO que coincida con hora_oficial_entrada+descuento_entrada
     $("#hora_oficial_salida_tarde").val("19:10");
-    $("#hora_real_salida_tarde").val("10:00");  //OJO que coincida con hora_oficial_salida-descuento_salida
+    $("#hora_real_salida_tarde").val("19:00");  //OJO que coincida con hora_oficial_salida-descuento_salida
 
     //inicializar los disparadaores en los inputs básicos
     $("#jornada_normal").change(function () {updateEvent("#jornada_normal"); });
@@ -54,7 +60,7 @@ $(document).ready(function () {
         maxHour:    16,
         interval:   5,
         scrollbar:  true,
-        change: function (time) {updateEvent("#hora_oficial_entrada", time); }
+        change: function (time) {updateEvent("#hora_oficial_entrada"); }
      });
 
     $('#hora_real_entrada').timepicker({
@@ -63,7 +69,7 @@ $(document).ready(function () {
         maxHour:    16,
         interval:   5,
         scrollbar:  true,
-        change: function (time) {updateEvent("#hora_real_entrada", time); }
+        change: function (time) {updateEvent("#hora_real_entrada"); }
      });
 
     $('#hora_oficial_salida').timepicker({
@@ -72,7 +78,7 @@ $(document).ready(function () {
         maxHour:    22,
         interval:   5,
         scrollbar:  true,
-        change: function (time) {updateEvent("#hora_oficial_salida", time); }
+        change: function (time) {updateEvent("#hora_oficial_salida"); }
      });
 
     $('#hora_real_salida').timepicker({
@@ -81,7 +87,7 @@ $(document).ready(function () {
         maxHour:    22,
         interval:   5,
         scrollbar:  true,
-        change: function (time) {updateEvent("#hora_real_salida", time); }
+        change: function (time) {updateEvent("#hora_real_salida"); }
      });
 
     $('#hora_oficial_entrada_tarde').timepicker({
@@ -90,7 +96,7 @@ $(document).ready(function () {
         maxHour:    22,
         interval:   5,
         scrollbar:  true,
-        change: function (time) {updateEvent("#hora_oficial_entrada_tarde", time); }
+        change: function (time) {updateEvent("#hora_oficial_entrada_tarde"); }
      });
 
     $('#hora_real_entrada_tarde').timepicker({
@@ -99,7 +105,7 @@ $(document).ready(function () {
         maxHour:    17,
         interval:   5,
         scrollbar:  true,
-        change: function (time) {updateEvent("#hora_real_entrada_tarde", time); }
+        change: function (time) {updateEvent("#hora_real_entrada_tarde"); }
      });
 
     $('#hora_oficial_salida_tarde').timepicker({
@@ -108,7 +114,7 @@ $(document).ready(function () {
         maxHour:    22,
         interval:   5,
         scrollbar:  true,
-        change: function (time) {updateEvent("#hora_oficial_salida_tarde", time); }
+        change: function (time) {updateEvent("#hora_oficial_salida_tarde"); }
      });
 
     $('#hora_real_salida_tarde').timepicker({
@@ -117,14 +123,55 @@ $(document).ready(function () {
         maxHour:    22,
         interval:   5,
         scrollbar:  true,
-        change: function (time) {updateEvent("#hora_real_salida_tarde", time); }
+        change: function (time) {updateEvent("#hora_real_salida_tarde"); }
      });
 
     //lo último que hacemos es actualizar todos los valores
     updateResults();
 });
 
+function toogleTurno(turno){
 
+  if (turno=="manyana") contraturno="tarde";
+  else contraturno="manyana";
+
+  //desactivamos el selector y lo ocultamos
+  $("#realiza_" + turno).prop("disabled",true);
+  $("#realiza_" + turno).val("1");
+  toggleInterval(turno);
+  $("#div_realiza_"+turno).hide();
+
+  //activamos el otro y lo mostramos
+  $("#realiza_" + contraturno).prop("disabled",false);
+  $("#div_realiza_"+contraturno).show();
+
+  //actualizamos los valores por defecto
+  if (turno=="manyana"){
+    $("#hora_oficial_entrada").val("08:00");
+    $("#hora_real_entrada").val("08:15"); //OJO que coincida con hora_oficial_entrada+descuento_entrada
+    $("#hora_oficial_salida").val("15:00");
+    $("#hora_real_salida").val("14:50");  //OJO que coincida con hora_oficial_salida-descuento_salida
+
+    $("#hora_oficial_entrada_tarde").val("16:00");
+    $("#hora_real_entrada_tarde").val("16:15"); //OJO que coincida con hora_oficial_entrada+descuento_entrada
+    $("#hora_oficial_salida_tarde").val("19:10");
+    $("#hora_real_salida_tarde").val("19:00");  //OJO que coincida con hora_oficial_salida-descuento_salida
+
+    ultimo_valor_fijado= "#hora_oficial_entrada"
+  } else {
+    $("#hora_oficial_entrada").val("9:50");
+    $("#hora_real_entrada").val("10:05"); //OJO que coincida con hora_oficial_entrada+descuento_entrada
+    $("#hora_oficial_salida").val("13:00");
+    $("#hora_real_salida").val("12:50");  //OJO que coincida con hora_oficial_salida-descuento_salida
+
+    $("#hora_oficial_entrada_tarde").val("14:00");
+    $("#hora_real_entrada_tarde").val("14:15"); //OJO que coincida con hora_oficial_entrada+descuento_entrada
+    $("#hora_oficial_salida_tarde").val("21:00");
+    $("#hora_real_salida_tarde").val("20:50");  //OJO que coincida con hora_oficial_salida-descuento_salida
+
+    ultimo_valor_fijado= "#hora_oficial_entrada_tarde"
+  }
+}
 // ajusta el picker indicado con un nuevo date igual al pasado por parámetro
 // con el incremento o decremento indicado
 function ajustaPicker(id_picker, hora, variacion){
@@ -177,7 +224,7 @@ function estableceHoraEntradaTarde(hora_oficial_salida){
 
 
 //manejador de los eventos que se generan al hacer click en los inputs
-function updateEvent(caller_id, value){
+function updateEvent(caller_id){
 
     //TODO validate inputs
 
@@ -192,102 +239,163 @@ function updateEvent(caller_id, value){
     //2. El sistema ajusta automáticamente todo el resto de horas teniendo en cuenta:
     // - Si el usuario ha indicado que hace una tarde o una mañana
     //   Este perido se toma manualmente de los datos indicados
-    // - Si hay algún ajuste horario por periodo estival
+    // - Si hay algún ajuste horario por periodo readucción horaria
 
     //alert( caller_id + " llamó a updateEvent con el valor " + value);
+
+
+    descuento_entrada = parseInt($('#descuento_entrada').val());
+    incremento_salida = parseInt($('#incremento_salida').val());
+
+    hora_oficial_entrada = Date.parseTime($('#hora_oficial_entrada').val());
+    hora_real_entrada = Date.parseTime($('#hora_real_entrada').val());
+    hora_oficial_salida = Date.parseTime($('#hora_oficial_salida').val());
+    hora_real_salida = Date.parseTime($('#hora_real_salida').val());
+
+    hora_oficial_entrada_tarde = Date.parseTime($('#hora_oficial_entrada_tarde').val());
+    hora_real_entrada_tarde = Date.parseTime($('#hora_real_entrada_tarde').val());
+    hora_oficial_salida_tarde = Date.parseTime($('#hora_oficial_salida_tarde').val());
+    hora_real_salida_tarde = Date.parseTime($('#hora_real_salida_tarde').val());
+
     switch (caller_id) {
         case "#hora_oficial_entrada":
                                 // 0. en el picker #hora_oficial_entrada tenemos el valor fijado
                                 // 1. ajustamos el valor del picker hora_real_entrada
-
-                                hora_real_entrada = new Date(value); //asignamos antes de restarle el tiempo de fichaje
-                                descuento_entrada = parseInt($('#descuento_entrada').val());
+                                hora_real_entrada = new Date(hora_oficial_entrada); //asignamos antes de restarle el tiempo de fichaje
                                 hora_real_entrada.setMinutes(hora_real_entrada.getMinutes() + descuento_entrada);
                                 $('#hora_real_entrada').val($.format.date(hora_real_entrada, "HH:mm"));
 
-                                // 2. Mandamos establecer la hora de salida
-                                estableceHoraSalidaManyana(value);
-
+                                // 2. Si queremos que haga el cálculo automático y el turno es de mañana
+                                // solicitamos que establezca la hora de salida
+                                if (calcula_automaticamente)
+                                if ($("#turno").val()=="manyana"){
+                                  estableceHoraSalidaManyana(hora_oficial_entrada);
+                                  ultimo_valor_fijado = caller_id;
+                                } else {
+                                  updateEvent(ultimo_valor_fijado);
+                                }
                                 break;
         case "#hora_real_entrada":
                                 // 0. en el picker #hora_real_entrada tenemos el valor fijado
                                 // 1. ajustamos el valor del picker hora_oficial_entrada
-
-                                hora_oficial_entrada = new Date(value); //asignamos antes de restarle el tiempo de fichaje
-                                descuento_entrada = parseInt($('#descuento_entrada').val());
+                                hora_oficial_entrada = new Date(hora_real_entrada); //asignamos antes de restarle el tiempo de fichaje
                                 hora_oficial_entrada.setMinutes(hora_oficial_entrada.getMinutes() - descuento_entrada);
                                 $('#hora_oficial_entrada').val($.format.date(hora_oficial_entrada, "HH:mm"));
 
                                 // 2. Mandamos establecer la hora de salida pasadno la hora_oficial_entrada
-                                estableceHoraSalidaManyana(value - descuento_entrada);
 
+                                if (calcula_automaticamente)
+                                if ($("#turno").val()=="manyana"){
+                                  estableceHoraSalidaManyana(hora_oficial_entrada);
+                                  ultimo_valor_fijado = caller_id;
+                                } else {
+                                  updateEvent(ultimo_valor_fijado);
+                                }
                                 break;
         case "#hora_oficial_salida":
-                                hora_real_salida = new Date(value); //asignamos antes de restarle el tiempo de fichaje
-                                incremento_salida = parseInt($('#incremento_salida').val());
+                                hora_real_salida = new Date(hora_oficial_salida); //asignamos antes de restarle el tiempo de fichaje
                                 hora_real_salida.setMinutes(hora_real_salida.getMinutes() - incremento_salida);
                                 $('#hora_real_salida').val($.format.date(hora_real_salida, "HH:mm"));
 
-                                estableceHoraEntradaManyana(value);
-
+                                if (calcula_automaticamente)
+                                if ($("#turno").val()=="manyana"){
+                                  estableceHoraEntradaManyana(hora_oficial_salida);
+                                  ultimo_valor_fijado = caller_id;
+                                } else {
+                                  updateEvent(ultimo_valor_fijado);
+                                }
                                 break;
 
         case "#hora_real_salida":
-                                hora_oficial_salida = new Date(value); //asignamos antes de restarle el tiempo de fichaje
-                                incremento_salida = parseInt($('#incremento_salida').val());
+                                hora_oficial_salida = new Date(hora_real_salida); //asignamos antes de restarle el tiempo de fichaje
                                 hora_oficial_salida.setMinutes(hora_oficial_salida.getMinutes() + incremento_salida);
                                 $('#hora_oficial_salida').val($.format.date(hora_oficial_salida, "HH:mm"));
 
-                                estableceHoraEntradaManyana(value + incremento_salida);
-
+                                if (calcula_automaticamente)
+                                if ($("#turno").val()=="manyana"){
+                                  estableceHoraEntradaManyana(hora_oficial_salida);
+                                  ultimo_valor_fijado = caller_id;
+                                } else {
+                                  updateEvent(ultimo_valor_fijado);
+                                }
                                 break;
         case "#hora_oficial_entrada_tarde":
-                                hora_real_entrada_tarde = value; //asignamos antes de restarle el tiempo de fichaje
-                                descuento_entrada = parseInt($('#descuento_entrada').val());
+                                hora_real_entrada_tarde = new Date(hora_oficial_entrada_tarde); //asignamos antes de restarle el tiempo de fichaje
                                 hora_real_entrada_tarde.setMinutes(hora_real_entrada_tarde.getMinutes() + descuento_entrada);
                                 $('#hora_real_entrada_tarde').val($.format.date(hora_real_entrada_tarde, "HH:mm"));
+
+                                if (calcula_automaticamente)
+                                if ($("#turno").val()=="tarde"){
+                                  estableceHoraSalidaTarde(hora_oficial_entrada_tarde);
+                                  ultimo_valor_fijado = caller_id;
+                                } else {
+                                  updateEvent(ultimo_valor_fijado);
+                                }
                                 break;
         case "#hora_real_entrada_tarde":
-                                hora_oficial_entrada_tarde = value; //asignamos antes de restarle el tiempo de fichaje
-                                descuento_entrada = parseInt($('#descuento_entrada').val());
+                                hora_oficial_entrada_tarde = new Date(hora_real_entrada_tarde); //asignamos antes de restarle el tiempo de fichaje
                                 hora_oficial_entrada_tarde.setMinutes(hora_oficial_entrada_tarde.getMinutes() - descuento_entrada);
                                 $('#hora_oficial_entrada_tarde').val($.format.date(hora_oficial_entrada_tarde, "HH:mm"));
+
+                                if (calcula_automaticamente)
+                                if ($("#turno").val()=="tarde"){
+                                  estableceHoraSalidaTarde(hora_oficial_entrada_tarde);
+                                  ultimo_valor_fijado = caller_id;
+                                } else {
+                                  updateEvent(ultimo_valor_fijado);
+                                }
+
                                 break;
         case "#hora_oficial_salida_tarde":
-                                hora_real_salida_tarde = value; //asignamos antes de restarle el tiempo de fichaje
-                                incremento_salida = parseInt($('#incremento_salida').val());
+                                hora_real_salida_tarde = new Date(hora_oficial_salida_tarde); //asignamos antes de restarle el tiempo de fichaje
                                 hora_real_salida_tarde.setMinutes(hora_real_salida_tarde.getMinutes() + incremento_salida);
                                 $('#hora_real_salida_tarde').val($.format.date(hora_real_salida_tarde, "HH:mm"));
+
+                                if (calcula_automaticamente)
+                                if ($("#turno").val()=="tarde"){
+                                  estableceHoraEntradaTarde(hora_oficial_salida_tarde);
+                                  ultimo_valor_fijado = caller_id;
+                                } else {
+                                  updateEvent(ultimo_valor_fijado);
+                                }
+
                                 break;
 
         case "#hora_real_salida_tarde":
-                                hora_oficial_salida_tarde = value; //asignamos antes de restarle el tiempo de fichaje
-                                incremento_salida = parseInt($('#incremento_salida').val());
+                                hora_oficial_salida_tarde = new Date(hora_real_salida_tarde); //asignamos antes de restarle el tiempo de fichaje
                                 hora_oficial_salida_tarde.setMinutes(hora_oficial_salida_tarde.getMinutes() - incremento_salida);
                                 $('#hora_oficial_salida_tarde').val($.format.date(hora_oficial_salida_tarde, "HH:mm"));
+
+                                if (calcula_automaticamente)
+                                if ($("#turno").val()=="tarde"){
+                                  estableceHoraEntradaTarde(hora_oficial_salida_tarde);
+                                  ultimo_valor_fijado = caller_id;
+                                } else {
+                                  updateEvent(ultimo_valor_fijado);
+                                }
+
                                 break;
         case "#realiza_tarde":
                                 toggleInterval("tarde");
+                                updateEvent(ultimo_valor_fijado);
                                 break;
         case "#realiza_manyana":
                                 toggleInterval("manyana");
+                                updateEvent(ultimo_valor_fijado);
                                 break;
         case "#turno":          turno = $("#turno").val();
-                                if (turno=="manyana") contraturno="tarde";
-                                else contraturno="manyana";
-
-                                //desactivamos el selector y lo ocultamos
-                                $("#realiza_" + turno).prop("disabled",true);
-                                $("#realiza_" + turno).val("1");
-                                toggleInterval(turno);
-                                $("#div_realiza_"+turno).hide();
-
-                                //activamos el otro y lo mostramos
-                                $("#realiza_" + contraturno).prop("disabled",false);
-                                $("#div_realiza_"+contraturno).show();
+                                toogleTurno(turno);
+                                updateEvent(ultimo_valor_fijado);
                                 break;
-
+        case "#jornada_normal":
+        case "#descuento_entrada":
+        case "#incremento_salida":
+        case "#reduccion":
+        case "#dias_habiles":
+                                updateEvent(ultimo_valor_fijado);
+                                break;
     }
+
 
     //después de actualizados los valores correspondientes calculamos los tiempos
     updateResults(caller_id);
@@ -343,13 +451,13 @@ function minutosSemanales(){
   if ((turno == "tarde") && $("#realiza_manyana").val()){
       hora_entrada_extra = Date.parseTime( $('#hora_oficial_entrada').val());
       hora_salida_extra =  Date.parseTime( $('#hora_oficial_salida').val());
-      resta_minutos = Date.dateDiff("n",hora_entrada_extra,hora_salida_extra);
+      resta_minutos = Date.dateDiff("m",hora_entrada_extra,hora_salida_extra);
   }
 
   if ((turno == "manyana") && $("#realiza_tarde").val()){
     hora_entrada_extra = Date.parseTime( $('#hora_oficial_entrada_tarde').val());
     hora_salida_extra =  Date.parseTime( $('#hora_oficial_salida_tarde').val());
-    resta_minutos = Date.dateDiff("n",hora_entrada_extra,hora_salida_extra);
+    resta_minutos = Date.dateDiff("m",hora_entrada_extra,hora_salida_extra);
   }
 
   return total_minutos_semanales-resta_minutos;
@@ -363,6 +471,11 @@ function minutosJornada(){
   return minutos_semana/n_dias;
 }
 
+
+// esta funcion se encarga de rellenar la sección "Resultados". Sólo evalúa
+// todos los factores (jornada, reducción, horas de entrada y salida,
+// y turnos de tarde...) rellena las casillas de dicha sección e indica por
+// pantalla si efectivamente estamos llevando a cabo correctamente la jornada.
 function updateResults(caller_id){
     //TODO colorear todas las casillas distintas menos la que hemos fijado
 
@@ -403,7 +516,7 @@ function updateResults(caller_id){
     if (n_dias_manyana > 0){
         hora_oficial_entrada = Date.parseTime( $('#hora_oficial_entrada').val());
         hora_oficial_salida =  Date.parseTime( $('#hora_oficial_salida').val());
-        total_minutos_manyana = Date.dateDiff("n",hora_oficial_entrada,hora_oficial_salida)*n_dias_manyana;
+        total_minutos_manyana = Date.dateDiff("m",hora_oficial_entrada,hora_oficial_salida)*n_dias_manyana;
     }
 
     $('#horas_manyana').val(minutes2hours_str(total_minutos_manyana));
@@ -414,7 +527,7 @@ function updateResults(caller_id){
     if (n_dias_tarde > 0){
         hora_oficial_entrada = Date.parseTime( $('#hora_oficial_entrada_tarde').val());
         hora_oficial_salida =  Date.parseTime( $('#hora_oficial_salida_tarde').val());
-        total_minutos_tarde = Date.dateDiff("n",hora_oficial_entrada,hora_oficial_salida)*n_dias_tarde;
+        total_minutos_tarde = Date.dateDiff("m",hora_oficial_entrada,hora_oficial_salida)*n_dias_tarde;
     }
 
     $('#horas_tarde').val(minutes2hours_str(total_minutos_tarde));
@@ -477,10 +590,25 @@ Date.dateDiff = function(datepart, fromdate, todate) {
   var divideBy = { w:604800000,
                    d:86400000,
                    h:3600000,
-                   n:60000,
+                   m:60000,
                    s:1000 };
   var diff_converted = Math.floor( diff/divideBy[datepart]);
   return diff_converted;
+};
+
+// Add (or substract if value is negative) the value, expresed in timeUnit
+// to the date and return the new date.
+Date.dateAdd = function(currentDate, value, timeUnit) {
+
+    timeUnit = timeUnit.toLowerCase();
+    var multiplyBy = { w:604800000,
+                     d:86400000,
+                     h:3600000,
+                     m:60000,
+                     s:1000 };
+    var updatedDate = new Date(currentDate.getTime() + multiplyBy[timeUnit] * value);
+
+    return updatedDate;
 };
 
 Date.parseTime = function(time) {
