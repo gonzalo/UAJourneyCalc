@@ -16,6 +16,28 @@
             <div class="page-header">
                 <h2>Calculadora jornada laboral para PAS de la UA</h2>
             </div>
+            <div class="alert alert-info">
+              Funcionamiento:
+              <ol>
+                <li>Configura primero los detalles de la jornada. En buena parte de los casos
+                    te servirán lo que vienen por defecto. Importante comprobar el número de días laborables
+                    de la semana y si tienes activa alguna reducción horaria.</li>
+                <li>Si haces el turno de mañana indica si estás haciendo haciendo el bloque de tarde y en qué horas.
+                    Estos valores se introducen manualmente.</li>
+                <li>Introduce qué hora hora quieres usar como referencia (oficial, real, de entrada o de salida) y
+                    el programa calcula automáticamente el resto de horas para ajustar el horario y cumplir las horas</li>
+              </ol>
+              Aclaraciones:
+              <ul>
+                <li><i>Hora real</i> se refiere a la que figura en el reloj en el momento del marcaje, <i>Hora oficial</i> es la que figurará
+                    en el campus virtual una vez aplicado los descuentos/incrementos de la entrada/salida. Podemos rellenar cualquiera
+                    de los dos, el otro valor se actualizará automáticamente.</li>
+                <li>En la sección "Resultados" puedes comprobar exactamente el total de horas a realizar, las que realmente realizas, etc.</li>
+              </ul>
+
+            </div>
+
+
             <div class="alert alert-warning">AVISO: Esta aplicación NO ES OFICIAL. Sólo un ejercicio para ayudarte a calcular
 las horas de entrada y salida del trabajo. Intento que coincida con los
 criterios que establece la UA pero si quieres asegurarte comprueba a través
@@ -77,7 +99,7 @@ de tu campus virtual que está cumpliendo tus horas.</div>
                         <div class="col-sm-2">
                             <input class="form-control" type="text" id="hora_oficial_entrada"></input>
                         </div>
-                        <label class="col-sm-3 control-label" for="hora_real_entrada">Hora al fichar entrada</label>
+                        <label class="col-sm-3 control-label" for="hora_real_entrada">Hora real entrada</label>
                         <div class="col-sm-2">
                             <input class="form-control" type="text" id="hora_real_entrada"></input>
                         </div>
@@ -87,7 +109,7 @@ de tu campus virtual que está cumpliendo tus horas.</div>
                         <div class="col-sm-2">
                             <input class="form-control" type="text" id="hora_oficial_salida"></input>
                         </div>
-                        <label class="col-sm-3 control-label" for="hora_real_salida">Hora al fichar salida</label>
+                        <label class="col-sm-3 control-label" for="hora_real_salida">Hora real salida</label>
                         <div class="col-sm-2">
                             <input class="form-control" type="text" id="hora_real_salida"></input>
                         </div>
@@ -105,7 +127,7 @@ de tu campus virtual que está cumpliendo tus horas.</div>
                         <div class="col-sm-2">
                             <input class="form-control" type="text" id="hora_oficial_entrada_tarde"></input>
                         </div>
-                        <label class="col-sm-3 control-label" for="hora_real_entrada_tarde">Hora al fichar entrada</label>
+                        <label class="col-sm-3 control-label" for="hora_real_entrada_tarde">Hora real entrada</label>
                         <div class="col-sm-2">
                             <input class="form-control" type="text" id="hora_real_entrada_tarde"></input>
                         </div>
@@ -115,7 +137,7 @@ de tu campus virtual que está cumpliendo tus horas.</div>
                         <div class="col-sm-2">
                             <input class="form-control" type="text" id="hora_oficial_salida_tarde"></input>
                         </div>
-                        <label class="col-sm-3 control-label" for="hora_real_salida_tarde">Hora al fichar salida</label>
+                        <label class="col-sm-3 control-label" for="hora_real_salida_tarde">Hora real salida</label>
                         <div class="col-sm-2">
                             <input class="form-control" type="text" id="hora_real_salida_tarde"></input>
                         </div>
