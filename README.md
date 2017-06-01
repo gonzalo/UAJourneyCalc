@@ -17,6 +17,15 @@ Lo más fácil es que accedas a la dirección que te indico más arriba pero si 
 
 Changelog
 ---------
+2017/06/01 - v1.0
+Nueva versión completamente funcional.
+  - Cálculo automático de las horas de entrada/salida según el valor fijado
+  - Posibilidad de desactivar el cálculo automático
+  - Ajustada a los último criterior de horario
+  - Versión responsive para móviles
+  - Código refactorizado y más sólido. Revisión de bugs.
+
+
 2017/05/22 - v0.6b
 Retomando el proyecto. Quiero cambiar la mecánica en la que se obtienen los datos. El objetivo es indicar cuál es la hora a la que deseas entrar o salir y que el programa te diga cuáles son el resto de horas para que te cuandren los horarios.
 
@@ -33,7 +42,7 @@ una evaluación indicando si se cumplen las horas adecuadamente.
 
 Pendiente
 ---------
-Al hacer cualquier cambio en una de los selectores (hora de entrada real, hora de entrada fichada, hora de salida real, hora de salida fichada) el resto de selectores se deben actualizar automáticamente con las horas correpondientes para que el saldo final sea 0. Sólo mantenemos fijos los de tarde (si estámos haciendo turno de mañana) y viceversa. 
+Al hacer cualquier cambio en una de los selectores (hora de entrada real, hora de entrada fichada, hora de salida real, hora de salida fichada) el resto de selectores se deben actualizar automáticamente con las horas correpondientes para que el saldo final sea 0. Sólo mantenemos fijos los de tarde (si estámos haciendo turno de mañana) y viceversa.
 
 LICENSE AND DISCLAIMER
 ----------------------
