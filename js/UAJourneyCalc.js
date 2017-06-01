@@ -7,7 +7,7 @@ var ultimo_valor_fijado = "#hora_oficial_entrada"
 var calcula_automaticamente = true;
 const c_jornada_normal="7:39";
 const c_descuento_entrada = 15;
-const c_descuento_salida = 15;
+const c_incremento_salida = 15;
 
 const horas_por_defecto = {
   "turno_manyana":{
@@ -47,7 +47,7 @@ $(document).ready(function () {
     //valores por defecto de los inputs
     $("#jornada_normal").val(c_jornada_normal);
     $("#descuento_entrada").val(c_descuento_entrada);
-    $("#incremento_salida").val(c_descuento_salida);
+    $("#incremento_salida").val(c_incremento_salida);
 
     $("#turno").append('<option value="manyana" selected="selected">Mañana</option>');
     $("#turno").append('<option value="tarde">Tarde</option>');
@@ -229,11 +229,11 @@ function estableceHoraSalidaManyana(hora_oficial_entrada){
 function estableceHoraEntradaManyana(hora_oficial_salida){
   // 1. calculamos cuanto tiempo de jornada tenemos que hacer
   minutos_Jornada = minutosJornada();
-  incremento_entrada = parseInt($('#incremento_entrada').val());
+  descuento_entrada = parseInt($('#descuento_entrada').val());
   // 2. Con una simple suma obtenemos la hora de entrada para cuadrar el balance
   ajustaPicker('#hora_oficial_entrada',hora_oficial_salida, -minutos_Jornada);
   // 3. De forma similar, calculamos la hora del ficaje de entrada
-  ajustaPicker('#hora_real_entrada',hora_oficial_salida, -minutos_Jornada +incremento_entrada);
+  ajustaPicker('#hora_real_entrada',hora_oficial_salida, -minutos_Jornada +descuento_entrada);
 }
 
 function estableceHoraSalidaTarde(hora_oficial_entrada){
@@ -249,11 +249,11 @@ function estableceHoraSalidaTarde(hora_oficial_entrada){
 function estableceHoraEntradaTarde(hora_oficial_salida){
   // 1. calculamos cuanto tiempo de jornada tenemos que hacer
   minutos_Jornada = minutosJornada();
-  incremento_entrada = parseInt($('#incremento_entrada').val());
+  descuento_entrada = parseInt($('#descuento_entrada').val());
   // 2. Con una simple suma obtenemos la hora de entrada para cuadrar el balance
   ajustaPicker('#hora_oficial_entrada_tarde',hora_oficial_salida, -minutos_Jornada);
   // 3. De forma similar, calculamos la hora del ficaje de entrada
-  ajustaPicker('#hora_real_entrada_tarde',hora_oficial_salida, -minutos_Jornada + incremento_entrada);
+  ajustaPicker('#hora_real_entrada_tarde',hora_oficial_salida, -minutos_Jornada + descuento_entrada);
 }
 
 
@@ -305,7 +305,7 @@ function updateEvent(caller_id){
                                 if (calcula_automaticamente)
                                 if ($("#turno").val()=="manyana"){
                                   estableceHoraSalidaManyana(hora_oficial_entrada);
-                                  ultimo_valor_fijado = caller_id;
+                                  fijar_referencia(caller_id);
                                 } else {
                                   updateEvent(ultimo_valor_fijado);
                                 }
@@ -322,7 +322,7 @@ function updateEvent(caller_id){
                                 if (calcula_automaticamente)
                                 if ($("#turno").val()=="manyana"){
                                   estableceHoraSalidaManyana(hora_oficial_entrada);
-                                  ultimo_valor_fijado = caller_id;
+                                  fijar_referencia(caller_id);
                                 } else {
                                   updateEvent(ultimo_valor_fijado);
                                 }
@@ -335,7 +335,7 @@ function updateEvent(caller_id){
                                 if (calcula_automaticamente)
                                 if ($("#turno").val()=="manyana"){
                                   estableceHoraEntradaManyana(hora_oficial_salida);
-                                  ultimo_valor_fijado = caller_id;
+                                  fijar_referencia(caller_id);
                                 } else {
                                   updateEvent(ultimo_valor_fijado);
                                 }
@@ -349,7 +349,7 @@ function updateEvent(caller_id){
                                 if (calcula_automaticamente)
                                 if ($("#turno").val()=="manyana"){
                                   estableceHoraEntradaManyana(hora_oficial_salida);
-                                  ultimo_valor_fijado = caller_id;
+                                  fijar_referencia(caller_id);
                                 } else {
                                   updateEvent(ultimo_valor_fijado);
                                 }
@@ -362,7 +362,7 @@ function updateEvent(caller_id){
                                 if (calcula_automaticamente)
                                 if ($("#turno").val()=="tarde"){
                                   estableceHoraSalidaTarde(hora_oficial_entrada_tarde);
-                                  ultimo_valor_fijado = caller_id;
+                                  fijar_referencia(caller_id);
                                 } else {
                                   updateEvent(ultimo_valor_fijado);
                                 }
@@ -375,7 +375,7 @@ function updateEvent(caller_id){
                                 if (calcula_automaticamente)
                                 if ($("#turno").val()=="tarde"){
                                   estableceHoraSalidaTarde(hora_oficial_entrada_tarde);
-                                  ultimo_valor_fijado = caller_id;
+                                  fijar_referencia(caller_id);
                                 } else {
                                   updateEvent(ultimo_valor_fijado);
                                 }
@@ -389,7 +389,7 @@ function updateEvent(caller_id){
                                 if (calcula_automaticamente)
                                 if ($("#turno").val()=="tarde"){
                                   estableceHoraEntradaTarde(hora_oficial_salida_tarde);
-                                  ultimo_valor_fijado = caller_id;
+                                  fijar_referencia(caller_id);
                                 } else {
                                   updateEvent(ultimo_valor_fijado);
                                 }
@@ -404,7 +404,7 @@ function updateEvent(caller_id){
                                 if (calcula_automaticamente)
                                 if ($("#turno").val()=="tarde"){
                                   estableceHoraEntradaTarde(hora_oficial_salida_tarde);
-                                  ultimo_valor_fijado = caller_id;
+                                  fijar_referencia(caller_id);
                                 } else {
                                   updateEvent(ultimo_valor_fijado);
                                 }
@@ -597,6 +597,21 @@ function updateResults(caller_id){
     }
 
     return true;
+}
+
+function fijar_referencia(proximo_valor_de_referencia){
+
+  $("#hora_oficial_entrada").parent().removeClass('has-success');
+  $("#hora_real_entrada").parent().removeClass('has-success');
+  $("#hora_oficial_salida").parent().removeClass('has-success');
+  $("#hora_real_salida").parent().removeClass('has-success');
+  $("#hora_oficial_entrada_tarde").parent().removeClass('has-success');
+  $("#hora_real_entrada_tarde").parent().removeClass('has-success');
+  $("#hora_oficial_salida_tarde").parent().removeClass('has-success');
+  $("#hora_real_salida_tarde").parent().removeClass('has-success');
+  ultimo_valor_fijado = proximo_valor_de_referencia;
+
+  $(ultimo_valor_fijado).parent().addClass('has-success');
 }
 
 //minute2hours_str turns any number of minutes into hh:mm format
