@@ -5,22 +5,58 @@
 
 var ultimo_valor_fijado = "#hora_oficial_entrada"
 var calcula_automaticamente = true;
+const c_jornada_normal="7:39";
+const c_descuento_entrada = 15;
+const c_descuento_salida = 15;
+
+const horas_por_defecto = {
+  "turno_manyana":{
+    "manyana":{
+        "entrada_oficial": "8:00",
+        "entrada_real": "8:15",
+        "salida_oficial": "15:00",
+        "salida_real": "14:45"
+    },
+    "tarde":{
+        "entrada_oficial": "16:00",
+        "entrada_real": "16:15",
+        "salida_oficial": "19:15",
+        "salida_real": "19:00"
+    }
+  },
+  "turno_tarde":{
+    "manyana":{
+        "entrada_oficial": "9:45",
+        "entrada_real": "10:00",
+        "salida_oficial": "13:00",
+        "salida_real": "12:45"
+    },
+    "tarde":{
+        "entrada_oficial": "14:00",
+        "entrada_real": "14:15",
+        "salida_oficial": "21:00",
+        "salida_real": "20:45"
+    },
+  }
+};
 
 //inicializador del JS
 $(document).ready(function () {
 
 
     //valores por defecto de los inputs
-    $("#jornada_normal").val("7:38");
-    $("#descuento_entrada").val(15);
-    $("#incremento_salida").val(10);
+    $("#jornada_normal").val(c_jornada_normal);
+    $("#descuento_entrada").val(c_descuento_entrada);
+    $("#incremento_salida").val(c_descuento_salida);
 
     $("#turno").append('<option value="manyana" selected="selected">Mañana</option>');
     $("#turno").append('<option value="tarde">Tarde</option>');
+
     $("#reduccion").append('<option value="0" selected="selected">Ninguna</option>');
-    $("#reduccion").append('<option value="38">38 min.</option>');
+    $("#reduccion").append('<option value="39">39 min.</option>');
     $("#reduccion").append('<option value="60">1 h.</option>');
-    $("#reduccion").append('<option value="98">1 h. 38 min.</option>');
+    $("#reduccion").append('<option value="99">1 h. 39 min.</option>');
+
     $("#dias_habiles").append('<option value="1">1</option>');
     $("#dias_habiles").append('<option value="2">2</option>');
     $("#dias_habiles").append('<option value="3">3</option>');
@@ -32,17 +68,11 @@ $(document).ready(function () {
     $("#realiza_manyana").prop('disabled',true);
     $("#realiza_manyana").append('<option value="1" selected="selected">Sí</option>');
     $("#realiza_manyana").append('<option value="">No</option>');
-    $("#hora_oficial_entrada").val("08:00");
-    $("#hora_real_entrada").val("08:15"); //OJO que coincida con hora_oficial_entrada+descuento_entrada
-    $("#hora_oficial_salida").val("15:00");
-    $("#hora_real_salida").val("14:50");  //OJO que coincida con hora_oficial_salida-descuento_salida
 
     $("#realiza_tarde").append('<option value="1" selected="selected">Sí</option>');
     $("#realiza_tarde").append('<option value="">No</option>');
-    $("#hora_oficial_entrada_tarde").val("16:00");
-    $("#hora_real_entrada_tarde").val("16:15"); //OJO que coincida con hora_oficial_entrada+descuento_entrada
-    $("#hora_oficial_salida_tarde").val("19:10");
-    $("#hora_real_salida_tarde").val("19:00");  //OJO que coincida con hora_oficial_salida-descuento_salida
+
+    toggleTurno("manyana");
 
     //inicializar los disparadaores en los inputs básicos
     $("#jornada_normal").change(function () {updateEvent("#jornada_normal"); });
@@ -130,7 +160,7 @@ $(document).ready(function () {
     updateResults();
 });
 
-function toogleTurno(turno){
+function toggleTurno(turno){
 
   if (turno=="manyana") contraturno="tarde";
   else contraturno="manyana";
@@ -147,27 +177,27 @@ function toogleTurno(turno){
 
   //actualizamos los valores por defecto
   if (turno=="manyana"){
-    $("#hora_oficial_entrada").val("08:00");
-    $("#hora_real_entrada").val("08:15"); //OJO que coincida con hora_oficial_entrada+descuento_entrada
-    $("#hora_oficial_salida").val("15:00");
-    $("#hora_real_salida").val("14:50");  //OJO que coincida con hora_oficial_salida-descuento_salida
+    $("#hora_oficial_entrada").val(horas_por_defecto["turno_manyana"]["manyana"]["entrada_oficial"]);
+    $("#hora_real_entrada").val(horas_por_defecto["turno_manyana"]["manyana"]["entrada_real"]);
+    $("#hora_oficial_salida").val(horas_por_defecto["turno_manyana"]["manyana"]["salida_oficial"]);
+    $("#hora_real_salida").val(horas_por_defecto["turno_manyana"]["manyana"]["salida_real"]);
 
-    $("#hora_oficial_entrada_tarde").val("16:00");
-    $("#hora_real_entrada_tarde").val("16:15"); //OJO que coincida con hora_oficial_entrada+descuento_entrada
-    $("#hora_oficial_salida_tarde").val("19:10");
-    $("#hora_real_salida_tarde").val("19:00");  //OJO que coincida con hora_oficial_salida-descuento_salida
+    $("#hora_oficial_entrada_tarde").val(horas_por_defecto["turno_manyana"]["tarde"]["entrada_oficial"]);
+    $("#hora_real_entrada_tarde").val(horas_por_defecto["turno_manyana"]["tarde"]["entrada_real"]);
+    $("#hora_oficial_salida_tarde").val(horas_por_defecto["turno_manyana"]["tarde"]["salida_oficial"]);
+    $("#hora_real_salida_tarde").val(horas_por_defecto["turno_manyana"]["tarde"]["salida_real"]);
 
     ultimo_valor_fijado= "#hora_oficial_entrada"
   } else {
-    $("#hora_oficial_entrada").val("9:50");
-    $("#hora_real_entrada").val("10:05"); //OJO que coincida con hora_oficial_entrada+descuento_entrada
-    $("#hora_oficial_salida").val("13:00");
-    $("#hora_real_salida").val("12:50");  //OJO que coincida con hora_oficial_salida-descuento_salida
+    $("#hora_oficial_entrada").val(horas_por_defecto["turno_tarde"]["manyana"]["entrada_oficial"]);
+    $("#hora_real_entrada").val(horas_por_defecto["turno_tarde"]["manyana"]["entrada_real"]);
+    $("#hora_oficial_salida").val(horas_por_defecto["turno_tarde"]["manyana"]["salida_oficial"]);
+    $("#hora_real_salida").val(horas_por_defecto["turno_tarde"]["manyana"]["salida_real"]);
 
-    $("#hora_oficial_entrada_tarde").val("14:00");
-    $("#hora_real_entrada_tarde").val("14:15"); //OJO que coincida con hora_oficial_entrada+descuento_entrada
-    $("#hora_oficial_salida_tarde").val("21:00");
-    $("#hora_real_salida_tarde").val("20:50");  //OJO que coincida con hora_oficial_salida-descuento_salida
+    $("#hora_oficial_entrada_tarde").val(horas_por_defecto["turno_tarde"]["tarde"]["entrada_oficial"]);
+    $("#hora_real_entrada_tarde").val(horas_por_defecto["turno_tarde"]["tarde"]["entrada_real"]);
+    $("#hora_oficial_salida_tarde").val(horas_por_defecto["turno_tarde"]["tarde"]["salida_oficial"]);
+    $("#hora_real_salida_tarde").val(horas_por_defecto["turno_tarde"]["tarde"]["salida_real"]);
 
     ultimo_valor_fijado= "#hora_oficial_entrada_tarde"
   }
@@ -384,7 +414,7 @@ function updateEvent(caller_id){
                                 updateEvent(ultimo_valor_fijado);
                                 break;
         case "#turno":          turno = $("#turno").val();
-                                toogleTurno(turno);
+                                toggleTurno(turno);
                                 updateEvent(ultimo_valor_fijado);
                                 break;
         case "#jornada_normal":
