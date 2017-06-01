@@ -19,24 +19,26 @@
       <h2>Calculadora jornada laboral para PAS de la UA</h2>
     </div>
     <div>
-      <p>Calcula tu horario de trabajo habitual con esta herramienta. Introduce tu horas de entrada y calculará autómaticamente la de salida o viceversa. El sistema tiene en cuenta las reducciones horarias, las variaciones del sistema de marcaje, si hay
+      <p>Calcula tu horario de trabajo habitual con esta herramienta. Introduce tu hora de entrada y calculará autómaticamente la de salida o viceversa. El sistema tiene en cuenta las reducciones horarias, las variaciones del sistema de marcaje, si hay
         días festivos en la semana, el horario que realizas de tarde, etc. <a href="#mas_informacion" data-toggle="collapse">(más información/ayuda)</a></p>
 
     </div>
     <div id="mas_informacion" class="alert alert-info collapse">
-      Funcionamiento:
+      <p>Modo automático:
       <ol>
         <li>Configura primero los detalles de la jornada. En buena parte de los casos te servirán los que vienen por defecto. Importante comprobar el turno (mañana o tarde) y si tienes activa alguna reducción horaria.</li>
         <li>Si haces el turno de mañana o de tarde tienes que introducir manualmente que horario estás haciendo en el otro turno (no lo hace automáticamente)</li>
         <li>Selecciona qué hora quieres usar como referencia (oficial, real, de entrada o de salida) y el programa calculará automáticamente el resto de valores para cumplir la jornada semanal.</li>
-      </ol>
-      Aclaraciones:
+      </ol></p>
+      <p>Modo manual:<br>
+      Puedes desactivar el cálculo automático desde el botón de "Más opciones...". El sistema no actualizará los otros valores y te indicará el desfase entre volumen de horas a realizar y el que estás haciendo.</p>
+      <p>Aclaraciones:
       <ul>
         <li><i>Hora real</i> se refiere a la que figura en el reloj en el momento del marcaje</li>
         <li><i>Hora oficial</i> es la que figurará en el campus virtual una vez aplicado los descuentos/incrementos.</li>
-        <li>Indicando uno de ellos calcula el otro valor automáticamente.</li>
+        <li>Indicando uno de ellos ajusta el otro valor automáticamente.</li>
         <li>En la sección "Resultados" puedes comprobar exactamente el total de horas a realizar, las que realmente realizas, etc.</li>
-      </ul>
+      </ul></p>
 
     </div>
 
@@ -78,6 +80,12 @@
               <label class="col-sm-2 col-xs-7 control-label" for="incremento_salida">Incremento salida (min)</label>
               <div class="col-sm-2 col-xs-5">
                 <input class="form-control" type="text" id="incremento_salida"></input>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 col-xs-7 control-label" for="calcula_automaticamente">Calcula automáticamente</label>
+              <div class="col-sm-2 col-xs-5">
+                <select class="form-control" id="calcula_automaticamente"></select>
               </div>
             </div>
           </div>

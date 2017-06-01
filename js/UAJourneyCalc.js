@@ -40,14 +40,10 @@ const horas_por_defecto = {
 };
 
 //inicializador del JS
-$(document).ready(function () {
+$(document).ready(function() {
 
 
   //valores por defecto de los inputs
-  $('#jornada_normal').val(c_jornada_normal);
-  $('#descuento_entrada').val(c_descuento_entrada);
-  $('#incremento_salida').val(c_incremento_salida);
-
   $('#turno').append('<option value="manyana" selected="selected">Mañana</option>');
   $('#turno').append('<option value="tarde">Tarde</option>');
 
@@ -62,6 +58,11 @@ $(document).ready(function () {
   $('#dias_habiles').append('<option value="4">4</option>');
   $('#dias_habiles').append('<option value="5" selected="selected">5</option>');
 
+  $('#jornada_normal').val(c_jornada_normal);
+  $('#descuento_entrada').val(c_descuento_entrada);
+  $('#incremento_salida').val(c_incremento_salida);
+  $('#calcula_automaticamente').append('<option value="true" selected="selected">Sí</option>');
+  $('#calcula_automaticamente').append('<option value="false">No</option>');
 
   $('#div_realiza_manyana').hide();
   $('#realiza_manyana').prop('disabled', true);
@@ -74,28 +75,31 @@ $(document).ready(function () {
   toggleTurno('manyana');
 
   //inicializar los disparadaores en los inputs básicos
-  $('#jornada_normal').change(function () {
+  $('#jornada_normal').change(function() {
     updateEvent('#jornada_normal');
   });
-  $('#descuento_entrada').change(function () {
+  $('#descuento_entrada').change(function() {
     updateEvent('#descuento_entrada');
   });
-  $('#incremento_salida').change(function () {
+  $('#incremento_salida').change(function() {
     updateEvent('#descuento_salida');
   });
-  $('#turno').change(function () {
+  $('#calcula_automaticamente').change(function() {
+    updateEvent('#calcula_automaticamente');
+  });
+  $('#turno').change(function() {
     updateEvent('#turno');
   });
-  $('#reduccion').change(function () {
+  $('#reduccion').change(function() {
     updateEvent('#reduccion');
   });
-  $('#dias_habiles').change(function () {
+  $('#dias_habiles').change(function() {
     updateEvent('#dias_habiles')
   });
-  $('#realiza_manyana').change(function () {
+  $('#realiza_manyana').change(function() {
     updateEvent('#realiza_manyana');
   });
-  $('#realiza_tarde').change(function () {
+  $('#realiza_tarde').change(function() {
     updateEvent('#realiza_tarde');
   });
 
@@ -105,7 +109,7 @@ $(document).ready(function () {
     maxHour: 16,
     interval: 5,
     scrollbar: true,
-    change: function (time) {
+    change: function(time) {
       updateEvent('#hora_oficial_entrada');
     }
   });
@@ -116,7 +120,7 @@ $(document).ready(function () {
     maxHour: 16,
     interval: 5,
     scrollbar: true,
-    change: function (time) {
+    change: function(time) {
       updateEvent('#hora_real_entrada');
     }
   });
@@ -127,7 +131,7 @@ $(document).ready(function () {
     maxHour: 22,
     interval: 5,
     scrollbar: true,
-    change: function (time) {
+    change: function(time) {
       updateEvent('#hora_oficial_salida');
     }
   });
@@ -138,7 +142,7 @@ $(document).ready(function () {
     maxHour: 22,
     interval: 5,
     scrollbar: true,
-    change: function (time) {
+    change: function(time) {
       updateEvent('#hora_real_salida');
     }
   });
@@ -453,6 +457,15 @@ function updateEvent(caller_id) {
       turno = $('#turno').val();
       toggleTurno(turno);
       updateEvent(ultimo_valor_fijado);
+      break;
+    case "#calcula_automaticamente":
+      if (calcula_automaticamente) {
+        calcula_automaticamente = false;
+        fijar_referencia("");
+      } else {
+        calcula_automaticamente = true;
+        updateEvent(ultimo_valor_fijado);
+      };
       break;
     case '#jornada_normal':
     case '#descuento_entrada':
