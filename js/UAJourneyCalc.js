@@ -160,6 +160,7 @@ $(document).ready(function () {
     updateResults();
 });
 
+//realiza los cambios correpondientes al seleccionar turno de mañana o de tarde
 function toggleTurno(turno){
 
   if (turno=="manyana") contraturno="tarde";
@@ -202,7 +203,8 @@ function toggleTurno(turno){
     ultimo_valor_fijado= "#hora_oficial_entrada_tarde"
   }
 }
-// ajusta el picker indicado con un nuevo date igual al pasado por parámetro
+
+// ajusta el input indicado con un nuevo date igual al pasado por parámetro
 // con el incremento o decremento indicado
 function ajustaPicker(id_picker, hora, variacion){
   nueva_hora = new Date(hora);
@@ -210,7 +212,10 @@ function ajustaPicker(id_picker, hora, variacion){
   $(id_picker).val($.format.date(nueva_hora, "HH:mm"));
 }
 
-
+// la siguiente coleccioón de funciones ajusta las horas de entrada o salida
+// del los turnos de mañana o tarde
+// problamente se podrían agrupar en una sola y parametrizar pero saldría un
+// volumen similar de líneas
 function estableceHoraSalidaManyana(hora_oficial_entrada){
   // 1. calculamos cuanto tiempo de jornada tenemos que hacer
   minutos_Jornada = minutosJornada();
@@ -431,6 +436,9 @@ function updateEvent(caller_id){
     updateResults(caller_id);
 }
 
+// función que activa/desactiva los inputs correspondientes
+// cuando indicamos si estamos haciendo o no el bloque de tarde (en caso de
+// estar en el turno de mañana) o viceversa
 function toggleInterval(interval){
 
     //interval tendrá la cadena "manyana" o "tarde"
@@ -502,7 +510,7 @@ function minutosJornada(){
 }
 
 
-// esta funcion se encarga de rellenar la sección "Resultados". Sólo evalúa
+// esta funcion se encarga de actualizar la sección "Resultados". Sólo evalúa
 // todos los factores (jornada, reducción, horas de entrada y salida,
 // y turnos de tarde...) rellena las casillas de dicha sección e indica por
 // pantalla si efectivamente estamos llevando a cabo correctamente la jornada.
@@ -641,6 +649,7 @@ Date.dateAdd = function(currentDate, value, timeUnit) {
     return updatedDate;
 };
 
+//convierte una cadena tipo "13:45" en un date
 Date.parseTime = function(time) {
 
     time_array = time.split(":");
