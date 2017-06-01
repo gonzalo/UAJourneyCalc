@@ -1,200 +1,201 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Calculadora horas de entrada y salida para la UA</title>
 
-    <link rel="stylesheet" type="text/css" href="css/jquery.timepicker.css"/>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css"/>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calculadora horas de entrada y salida para la UA</title>
+
+  <link rel="stylesheet" type="text/css" href="css/jquery.timepicker.css" />
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css" />
 
 </head>
+
 <body role="document">
-    <div class="container-fluid">
+  <div class="container-fluid">
 
-            <div class="page-header">
-                <h2>Calculadora jornada laboral para PAS de la UA</h2>
-            </div>
-            <div>
-              <p>Calcula tu horario de trabajo habitual con esta herramienta. Introduce tu horas de entrada y calculará autómaticamente la de salida o viceversa. El sistema tiene en cuenta las reducciones horarias,
-              las variaciones del sistema de marcaje, si hay días festivos en la semana, el horario que realizas de tarde, etc. <a href="#mas_informacion"  data-toggle="collapse" >(más información/ayuda)</a></p>
-
-            </div>
-            <div id="mas_informacion" class="alert alert-info collapse">
-              Funcionamiento:
-              <ol>
-                <li>Configura primero los detalles de la jornada. En buena parte de los casos
-                    te servirán los que vienen por defecto. Importante comprobar el turno (mañana o tarde) y si tienes activa alguna reducción horaria.</li>
-                <li>Si haces el turno de mañana o de tarde tienes que introducir manualmente que horario estás haciendo en el otro turno (no lo hace automáticamente)</li>
-                <li>Selecciona qué hora quieres usar como referencia (oficial, real, de entrada o de salida) y
-                    el programa calculará automáticamente el resto de valores para cumplir la jornada semanal.</li>
-              </ol>
-              Aclaraciones:
-              <ul>
-                <li><i>Hora real</i> se refiere a la que figura en el reloj en el momento del marcaje</li>
-                <li><i>Hora oficial</i> es la que figurará en el campus virtual una vez aplicado los descuentos/incrementos.</li>
-                <li>Indicando uno de ellos calcula el otro valor automáticamente.</li>
-                <li>En la sección "Resultados" puedes comprobar exactamente el total de horas a realizar, las que realmente realizas, etc.</li>
-              </ul>
-
-            </div>
-
-
-            <div class="alert alert-warning">AVISO: Esta aplicación NO ES OFICIAL. Comprueba a través del campus virtual que cumples el horario.</div>
-
-
-
-        <form role="form" class="form-horizontal">
-            <div class="panel panel-default">
-                <div class="panel-heading">Configuración horario</div>
-                <div class="panel-body">
-
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label" for="turno">¿Qué turno trabajas?</label>
-                        <div class="col-sm-2">
-                            <select class="form-control" id="turno"></select>
-                        </div>
-                        <label class="col-sm-2 control-label" for="reduccion">¿Tienes activa alguna reducción horaria?</label>
-                        <div class="col-sm-2">
-                            <select class="form-control" id="reduccion"></select>
-                        </div>
-                        <label  class="col-sm-2 control-label" for="dias_habiles">¿Cuántos días laborables tiene esta semana?</label>
-                        <div class="col-sm-2">
-                            <select class="form-control" id="dias_habiles"></select>
-                        </div>
-                    </div>
-                    <p class="text-right" ><a href="#mas_opciones"  data-toggle="collapse" >Más opciones...</a></p>
-                    <div id="mas_opciones" class="collapse">
-                      <div class="form-group">
-                          <label class="col-sm-2 col-xs-7 control-label" for="jornada_normal" >Jornada normal</label>
-                          <div class="col-sm-2 col-xs-5">
-                            <input type="text" id="jornada_normal" class="form-control"></input>
-                          </div>
-                          <label class="col-sm-2 col-xs-7 control-label" for="descuento_entrada">Descuento entrada (min)</label>
-                          <div class="col-sm-2 col-xs-5">
-                              <input  class="form-control" type="text" id="descuento_entrada"></input>
-                          </div>
-                          <label class="col-sm-2 col-xs-7 control-label" for="incremento_salida">Incremento salida (min)</label>
-                          <div class="col-sm-2 col-xs-5">
-                              <input  class="form-control" type="text" id="incremento_salida"></input>
-                          </div>
-                      </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="panel panel-default">
-                <div class="panel-heading">Datos entradas/salidas</div>
-                <div class="panel-body">
-                    <p>Selecciona uno de los valores y es el que usará como referencia para calcular el resto (marcado en verde):</p>
-
-                    <h4>Horario mañana</h4>
-                    <div class="form-group" id="div_realiza_manyana">
-                        <label class="col-sm-3 col-xs-7  control-label" for="realiza_manyana">¿Haces alguna mañana?</label>
-                        <div class="col-sm-2 col-xs-5">
-                        <select class="form-control" id="realiza_manyana"></select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 col-xs-7 control-label" for="hora_oficial_entrada">Hora oficial entrada</label>
-                        <div class="col-sm-2 col-xs-5">
-                            <input class="form-control" type="text" id="hora_oficial_entrada"></input>
-                        </div>
-                        <label class="col-sm-3 col-xs-7 control-label" for="hora_real_entrada">Hora real entrada</label>
-                        <div class="col-sm-2 col-xs-5">
-                            <input class="form-control" type="text" id="hora_real_entrada"></input>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 col-xs-7 control-label" for="hora_oficial_salida">Hora oficial salida</label>
-                        <div class="col-sm-2 col-xs-5">
-                            <input class="form-control" type="text" id="hora_oficial_salida"></input>
-                        </div>
-                        <label class="col-sm-3 col-xs-7 control-label" for="hora_real_salida">Hora real salida</label>
-                        <div class="col-sm-2 col-xs-5">
-                            <input class="form-control" type="text" id="hora_real_salida"></input>
-                        </div>
-                    </div>
-
-                    <h4>Horario tarde</h4>
-                    <div class="form-group" id="div_realiza_tarde">
-                        <label class="col-sm-3 col-xs-7 control-label" for="realiza_tarde">¿Haces alguna tarde?</label>
-                        <div class="col-sm-2 col-xs-5">
-                        <select class="form-control" id="realiza_tarde"></select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 col-xs-7 control-label" for="hora_oficial_entrada_tarde">Hora oficial entrada</label>
-                        <div class="col-sm-2 col-xs-5">
-                            <input class="form-control" type="text" id="hora_oficial_entrada_tarde"></input>
-                        </div>
-                        <label class="col-sm-3 col-xs-7 control-label" for="hora_real_entrada_tarde">Hora real entrada</label>
-                        <div class="col-sm-2 col-xs-5">
-                            <input class="form-control" type="text" id="hora_real_entrada_tarde"></input>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 col-xs-7 control-label" for="hora_oficial_salida_tarde">Hora oficial salida</label>
-                        <div class="col-sm-2 col-xs-5">
-                            <input class="form-control" type="text" id="hora_oficial_salida_tarde"></input>
-                        </div>
-                        <label class="col-sm-3 col-xs-7 control-label" for="hora_real_salida_tarde">Hora real salida</label>
-                        <div class="col-sm-2 col-xs-5">
-                            <input class="form-control" type="text" id="hora_real_salida_tarde"></input>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="">
-                <div class="page-header">
-                    <h3>Resultados</h3>
-                </div>
-
-                <div class="alert" id="evaluacion" style="text-align: center"></div>
-                <div class="form-group">
-                    <label  class="col-sm-3 control-label" for="horas_manyana">Horas hechas de mañana</label>
-                    <div class="col-sm-2">
-                        <input type="text" id="horas_manyana" class="form-control" disabled="disabled"></input>
-                    </div>
-                    <label class="col-sm-3 control-label" for="total_horas" >Horas semanales a cumplir</label>
-                    <div class="col-sm-2">
-                      <input type="text" id="total_horas" class="form-control" disabled="disabled"></input>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label" for="horas_tarde">Horas hechas de tarde</label>
-                    <div class="col-sm-2">
-                        <input  class="form-control" type="text" id="horas_tarde" disabled="disabled"></input>
-                    </div>
-                    <label class="col-sm-3 control-label" for="horas_realizadas">Total horas realizadas</label>
-                    <div class="col-sm-2">
-                        <input  class="form-control" type="text" id="horas_realizadas" disabled="disabled"></input>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-8 control-label" for="balance_horas">Balance de horas exigidas/realizadas</label>
-                    <div class="col-sm-2">
-                        <input  class="form-control" type="text" id="balance_horas" disabled="disabled"></input>
-                    </div>
-                </div>
-
-            </div>
-        </form>
-
-        <div class="alert alert-info" style="text-align: center">Creado y mantenido por Gonzalo Cao Cabeza de Vaca
-            <a href="https://github.com/gonzalo/UAJourneyCalc">Proyecto en GitHub</a>
-        </div>
+    <div class="page-header">
+      <h2>Calculadora jornada laboral para PAS de la UA</h2>
     </div>
-    <!-- Bootstrap core JavaScript
+    <div>
+      <p>Calcula tu horario de trabajo habitual con esta herramienta. Introduce tu horas de entrada y calculará autómaticamente la de salida o viceversa. El sistema tiene en cuenta las reducciones horarias, las variaciones del sistema de marcaje, si hay
+        días festivos en la semana, el horario que realizas de tarde, etc. <a href="#mas_informacion" data-toggle="collapse">(más información/ayuda)</a></p>
+
+    </div>
+    <div id="mas_informacion" class="alert alert-info collapse">
+      Funcionamiento:
+      <ol>
+        <li>Configura primero los detalles de la jornada. En buena parte de los casos te servirán los que vienen por defecto. Importante comprobar el turno (mañana o tarde) y si tienes activa alguna reducción horaria.</li>
+        <li>Si haces el turno de mañana o de tarde tienes que introducir manualmente que horario estás haciendo en el otro turno (no lo hace automáticamente)</li>
+        <li>Selecciona qué hora quieres usar como referencia (oficial, real, de entrada o de salida) y el programa calculará automáticamente el resto de valores para cumplir la jornada semanal.</li>
+      </ol>
+      Aclaraciones:
+      <ul>
+        <li><i>Hora real</i> se refiere a la que figura en el reloj en el momento del marcaje</li>
+        <li><i>Hora oficial</i> es la que figurará en el campus virtual una vez aplicado los descuentos/incrementos.</li>
+        <li>Indicando uno de ellos calcula el otro valor automáticamente.</li>
+        <li>En la sección "Resultados" puedes comprobar exactamente el total de horas a realizar, las que realmente realizas, etc.</li>
+      </ul>
+
+    </div>
+
+
+    <div class="alert alert-warning">AVISO: Esta aplicación NO ES OFICIAL. Comprueba a través del campus virtual que cumples el horario.</div>
+
+
+
+    <form role="form" class="form-horizontal">
+      <div class="panel panel-default">
+        <div class="panel-heading">Configuración horario</div>
+        <div class="panel-body">
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="turno">¿Qué turno trabajas?</label>
+            <div class="col-sm-2">
+              <select class="form-control" id="turno"></select>
+            </div>
+            <label class="col-sm-2 control-label" for="reduccion">¿Tienes activa alguna reducción horaria?</label>
+            <div class="col-sm-2">
+              <select class="form-control" id="reduccion"></select>
+            </div>
+            <label class="col-sm-2 control-label" for="dias_habiles">¿Cuántos días laborables tiene esta semana?</label>
+            <div class="col-sm-2">
+              <select class="form-control" id="dias_habiles"></select>
+            </div>
+          </div>
+          <p class="text-right"><a href="#mas_opciones" data-toggle="collapse">Más opciones...</a></p>
+          <div id="mas_opciones" class="collapse">
+            <div class="form-group">
+              <label class="col-sm-2 col-xs-7 control-label" for="jornada_normal">Jornada normal</label>
+              <div class="col-sm-2 col-xs-5">
+                <input type="text" id="jornada_normal" class="form-control"></input>
+              </div>
+              <label class="col-sm-2 col-xs-7 control-label" for="descuento_entrada">Descuento entrada (min)</label>
+              <div class="col-sm-2 col-xs-5">
+                <input class="form-control" type="text" id="descuento_entrada"></input>
+              </div>
+              <label class="col-sm-2 col-xs-7 control-label" for="incremento_salida">Incremento salida (min)</label>
+              <div class="col-sm-2 col-xs-5">
+                <input class="form-control" type="text" id="incremento_salida"></input>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">Datos entradas/salidas</div>
+        <div class="panel-body">
+          <p>Selecciona uno de los valores y es el que usará como referencia para calcular el resto (marcado en verde):</p>
+
+          <h4>Horario mañana</h4>
+          <div class="form-group" id="div_realiza_manyana">
+            <label class="col-sm-3 col-xs-7  control-label" for="realiza_manyana">¿Haces alguna mañana?</label>
+            <div class="col-sm-2 col-xs-5">
+              <select class="form-control" id="realiza_manyana"></select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 col-xs-7 control-label" for="hora_oficial_entrada">Hora oficial entrada</label>
+            <div class="col-sm-2 col-xs-5">
+              <input class="form-control" type="text" id="hora_oficial_entrada"></input>
+            </div>
+            <label class="col-sm-3 col-xs-7 control-label" for="hora_real_entrada">Hora real entrada</label>
+            <div class="col-sm-2 col-xs-5">
+              <input class="form-control" type="text" id="hora_real_entrada"></input>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 col-xs-7 control-label" for="hora_oficial_salida">Hora oficial salida</label>
+            <div class="col-sm-2 col-xs-5">
+              <input class="form-control" type="text" id="hora_oficial_salida"></input>
+            </div>
+            <label class="col-sm-3 col-xs-7 control-label" for="hora_real_salida">Hora real salida</label>
+            <div class="col-sm-2 col-xs-5">
+              <input class="form-control" type="text" id="hora_real_salida"></input>
+            </div>
+          </div>
+
+          <h4>Horario tarde</h4>
+          <div class="form-group" id="div_realiza_tarde">
+            <label class="col-sm-3 col-xs-7 control-label" for="realiza_tarde">¿Haces alguna tarde?</label>
+            <div class="col-sm-2 col-xs-5">
+              <select class="form-control" id="realiza_tarde"></select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 col-xs-7 control-label" for="hora_oficial_entrada_tarde">Hora oficial entrada</label>
+            <div class="col-sm-2 col-xs-5">
+              <input class="form-control" type="text" id="hora_oficial_entrada_tarde"></input>
+            </div>
+            <label class="col-sm-3 col-xs-7 control-label" for="hora_real_entrada_tarde">Hora real entrada</label>
+            <div class="col-sm-2 col-xs-5">
+              <input class="form-control" type="text" id="hora_real_entrada_tarde"></input>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 col-xs-7 control-label" for="hora_oficial_salida_tarde">Hora oficial salida</label>
+            <div class="col-sm-2 col-xs-5">
+              <input class="form-control" type="text" id="hora_oficial_salida_tarde"></input>
+            </div>
+            <label class="col-sm-3 col-xs-7 control-label" for="hora_real_salida_tarde">Hora real salida</label>
+            <div class="col-sm-2 col-xs-5">
+              <input class="form-control" type="text" id="hora_real_salida_tarde"></input>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="">
+        <div class="page-header">
+          <h3>Resultados</h3>
+        </div>
+
+        <div class="alert" id="evaluacion" style="text-align: center"></div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label" for="horas_manyana">Horas hechas de mañana</label>
+          <div class="col-sm-2">
+            <input type="text" id="horas_manyana" class="form-control" disabled="disabled"></input>
+          </div>
+          <label class="col-sm-3 control-label" for="total_horas">Horas semanales a cumplir</label>
+          <div class="col-sm-2">
+            <input type="text" id="total_horas" class="form-control" disabled="disabled"></input>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label" for="horas_tarde">Horas hechas de tarde</label>
+          <div class="col-sm-2">
+            <input class="form-control" type="text" id="horas_tarde" disabled="disabled"></input>
+          </div>
+          <label class="col-sm-3 control-label" for="horas_realizadas">Total horas realizadas</label>
+          <div class="col-sm-2">
+            <input class="form-control" type="text" id="horas_realizadas" disabled="disabled"></input>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-8 control-label" for="balance_horas">Balance de horas exigidas/realizadas</label>
+          <div class="col-sm-2">
+            <input class="form-control" type="text" id="balance_horas" disabled="disabled"></input>
+          </div>
+        </div>
+
+      </div>
+    </form>
+
+    <div class="alert alert-info" style="text-align: center">Creado y mantenido por Gonzalo Cao Cabeza de Vaca
+      <a href="https://github.com/gonzalo/UAJourneyCalc">Proyecto en GitHub</a>
+    </div>
+  </div>
+  <!-- Bootstrap core JavaScript
         ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script type="text/javascript" src="js/jquery-dateFormat.min.js"></script>
-    <script type="text/javascript" src="js/UAJourneyCalc.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/jquery.timepicker.min.js"></script>
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script type="text/javascript" src="js/jquery-dateFormat.min.js"></script>
+  <script type="text/javascript" src="js/UAJourneyCalc.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/jquery.timepicker.min.js"></script>
 
 </body>
+
 </html>
