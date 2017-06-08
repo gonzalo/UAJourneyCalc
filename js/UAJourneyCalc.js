@@ -7,6 +7,7 @@ var calcula_automaticamente = true;
 const c_jornada_normal = '7:39';
 const c_descuento_entrada = 15;
 const c_incremento_salida = 15;
+const c_reduccion_jornada = '00:00';
 
 const horas_por_defecto = {
   'turno_manyana': {
@@ -51,16 +52,8 @@ $(document).ready(function() {
   //$('#reduccion').append('<option value="39">39 min.</option>');
   //$('#reduccion').append('<option value="60">1 h.</option>');
   //$('#reduccion').append('<option value="99">1 h. 39 min.</option>');
-  $/$('#reduccion').val(0);
-  $('#reduccion').tooltip({'trigger':'focus',
-                           'title': `0:39m &rarr; 39<br/>
-                                     1:00h &rarr; 60<br/>
-                                     1:39h &rarr; 99<br/>
-                                     2:00h &rarr; 120<br/>
-                                     2:39h &rarr; 159<br/>
-                                    ...`,
-                           'placement':'bottom',
-                           'html':true});
+  $/$('#reduccion').val(c_reduccion_jornada);
+
 
   $('#dias_habiles').append('<option value="1">1</option>');
   $('#dias_habiles').append('<option value="2">2</option>');
@@ -100,9 +93,21 @@ $(document).ready(function() {
   $('#turno').change(function() {
     updateEvent('#turno');
   });
-  $('#reduccion').change(function() {
-    updateEvent('#reduccion');
+
+  //$('#reduccion').change(function() {
+  //  updateEvent('#reduccion');
+  //});
+  $('#reduccion').timepicker({
+    timeFormat: 'HH:mm',
+    minHour: 0,
+    maxHour: 7,
+    interval: 1,
+    scrollbar: true,
+    change: function(time) {
+      updateEvent('#reduccion');
+    }
   });
+
   $('#dias_habiles').change(function() {
     updateEvent('#dias_habiles')
   });
@@ -528,15 +533,16 @@ function toggleInterval(interval) {
 
 
 //calculamos el número de minutos que debes cumplir semanalmente
-function minutosSemanales() {
+function minutosSemanales () {
 
   // nº días x (jornada - reducción)
   var jornada_array = $('#jornada_normal').val().split(':');
   var n_dias = parseInt($('#dias_habiles').val());
-  var reduccion = parseInt($('#reduccion').val());
+  //var reduccion = parseInt($('#reduccion').val());
+  reduccion = date2minutes($('#reduccion').val());
 
   var total_minutos_semanales = (parseInt(jornada_array[0]) * 60 + parseInt(jornada_array[1]) - reduccion) * n_dias;
-  var resta_minutos = 0
+  var resta_minutos = 0;
 
   var turno = $('#turno').val();
 
@@ -576,7 +582,8 @@ function updateResults(caller_id) {
   //calculamos el número de minutos que debes cumplir semanalmente
   var jornada_array = $('#jornada_normal').val().split(':');
   var n_dias = parseInt($('#dias_habiles').val());
-  var reduccion = parseInt($('#reduccion').val());
+  //var reduccion = parseInt($('#reduccion').val());
+  reduccion = date2minutes($('#reduccion').val());
   var turno = $('#turno').val();
   var total_minutos_semanales = (parseInt(jornada_array[0]) * 60 + parseInt(jornada_array[1]) - reduccion) * n_dias;
   $('#total_horas').val(minutes2hours_str(total_minutos_semanales));
@@ -679,6 +686,14 @@ function minutes2hours_str(minutes_amount) {
   return (hours + ':' + minutes);
 
 
+}
+
+//convert a hh:mm string to minutes -> '2:38' = 158
+function date2minutes(data) {
+  var time_array = data.split(':');
+  var hours = parseInt(time_array[0]);
+  var minutes = parseInt(time_array[1]);
+  return (hours*60 + minutes);
 }
 
 //pad (string to parse, max zeros)
