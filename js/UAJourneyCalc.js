@@ -47,10 +47,20 @@ $(document).ready(function() {
   $('#turno').append('<option value="manyana" selected="selected">Mañana</option>');
   $('#turno').append('<option value="tarde">Tarde</option>');
 
-  $('#reduccion').append('<option value="0" selected="selected">Ninguna</option>');
-  $('#reduccion').append('<option value="39">39 min.</option>');
-  $('#reduccion').append('<option value="60">1 h.</option>');
-  $('#reduccion').append('<option value="99">1 h. 39 min.</option>');
+  //$('#reduccion').append('<option value="0" selected="selected">Ninguna</option>');
+  //$('#reduccion').append('<option value="39">39 min.</option>');
+  //$('#reduccion').append('<option value="60">1 h.</option>');
+  //$('#reduccion').append('<option value="99">1 h. 39 min.</option>');
+  $/$('#reduccion').val(0);
+  $('#reduccion').tooltip({'trigger':'focus',
+                           'title': `0:39m &rarr; 39<br/>
+                                     1:00h &rarr; 60<br/>
+                                     1:39h &rarr; 99<br/>
+                                     2:00h &rarr; 120<br/>
+                                     2:39h &rarr; 159<br/>
+                                    ...`,
+                           'placement':'bottom',
+                           'html':true});
 
   $('#dias_habiles').append('<option value="1">1</option>');
   $('#dias_habiles').append('<option value="2">2</option>');
