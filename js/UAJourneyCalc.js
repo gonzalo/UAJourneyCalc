@@ -103,6 +103,7 @@ $(document).ready(function() {
     maxHour: 7,
     interval: 1,
     scrollbar: true,
+    dynamic: false,
     change: function(time) {
       updateEvent('#reduccion');
     }
@@ -120,10 +121,9 @@ $(document).ready(function() {
 
   $('#hora_oficial_entrada').timepicker({
     timeFormat: 'HH:mm',
-    minHour: 7,
-    maxHour: 16,
     interval: 5,
     scrollbar: true,
+    dynamic: false,
     change: function(time) {
       updateEvent('#hora_oficial_entrada');
     }
@@ -131,10 +131,9 @@ $(document).ready(function() {
 
   $('#hora_real_entrada').timepicker({
     timeFormat: 'HH:mm',
-    minHour: 6,
-    maxHour: 16,
     interval: 5,
     scrollbar: true,
+    dynamic: false,
     change: function(time) {
       updateEvent('#hora_real_entrada');
     }
@@ -142,10 +141,9 @@ $(document).ready(function() {
 
   $('#hora_oficial_salida').timepicker({
     timeFormat: 'HH:mm',
-    minHour: 14,
-    maxHour: 22,
     interval: 5,
     scrollbar: true,
+    dynamic: false,
     change: function(time) {
       updateEvent('#hora_oficial_salida');
     }
@@ -153,10 +151,9 @@ $(document).ready(function() {
 
   $('#hora_real_salida').timepicker({
     timeFormat: 'HH:mm',
-    minHour: 13,
-    maxHour: 22,
     interval: 5,
     scrollbar: true,
+    dynamic: false,
     change: function(time) {
       updateEvent('#hora_real_salida');
     }
@@ -164,10 +161,9 @@ $(document).ready(function() {
 
   $('#hora_oficial_entrada_tarde').timepicker({
     timeFormat: 'HH:mm',
-    minHour: 12,
-    maxHour: 22,
     interval: 5,
     scrollbar: true,
+    dynamic: false,
     change: function(time) {
       updateEvent('#hora_oficial_entrada_tarde');
     }
@@ -175,10 +171,9 @@ $(document).ready(function() {
 
   $('#hora_real_entrada_tarde').timepicker({
     timeFormat: 'HH:mm',
-    minHour: 11,
-    maxHour: 17,
     interval: 5,
     scrollbar: true,
+    dynamic: false,
     change: function(time) {
       updateEvent('#hora_real_entrada_tarde');
     }
@@ -186,10 +181,9 @@ $(document).ready(function() {
 
   $('#hora_oficial_salida_tarde').timepicker({
     timeFormat: 'HH:mm',
-    minHour: 18,
-    maxHour: 22,
     interval: 5,
     scrollbar: true,
+    dynamic: false,
     change: function(time) {
       updateEvent('#hora_oficial_salida_tarde');
     }
@@ -197,10 +191,9 @@ $(document).ready(function() {
 
   $('#hora_real_salida_tarde').timepicker({
     timeFormat: 'HH:mm',
-    minHour: 18,
-    maxHour: 22,
     interval: 5,
     scrollbar: true,
+    dynamic: false,
     change: function(time) {
       updateEvent('#hora_real_salida_tarde');
     }
