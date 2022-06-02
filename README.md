@@ -2,14 +2,14 @@ UA Journey Calculator
 =====================
 
 Calculadora de la jornada laboral para PAS de la UA
-http://github.com/gonzalo/UAJourneyCalc
+https://github.com/gonzalo/UAJourneyCalc
 
 Creado y mantenido por Gonzalo Cao Cabeza de Vaca
 Feedback y comentarios a gonzalo.cao(at)gmail.com
 
 Pruébalo on line
 ----------------
-http://gonzalo.github.io/UAJourneyCalc/
+https://gonzalo.github.io/UAJourneyCalc/
 
 Uso
 ---
@@ -17,6 +17,11 @@ Lo más fácil es que accedas a la dirección que te indico más arriba pero si 
 
 Changelog
 ---------
+2022/06/02 - v1.1
+  - Actualización de la jornada de la UA a las 7:15
+  - Todos los includes son ahora https
+
+
 2017/06/01 - v1.0
 Nueva versión completamente funcional.
   - Cálculo automático de las horas de entrada/salida según el valor fijado
