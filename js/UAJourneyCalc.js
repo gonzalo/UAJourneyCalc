@@ -14,8 +14,8 @@ const horas_por_defecto = {
     'manyana': {
       'entrada_oficial': '8:00',
       'entrada_real': '8:15',
-      'salida_oficial': '15:00',
-      'salida_real': '14:45'
+      'salida_oficial': '14:36',
+      'salida_real': '14:21'
     },
     'tarde': {
       'entrada_oficial': '16:00',
@@ -34,8 +34,8 @@ const horas_por_defecto = {
     'tarde': {
       'entrada_oficial': '14:00',
       'entrada_real': '14:15',
-      'salida_oficial': '21:00',
-      'salida_real': '20:45'
+      'salida_oficial': '20:36',
+      'salida_real': '20:21'
     },
   }
 };
