@@ -4,7 +4,7 @@
 
 var ultimo_valor_fijado = '#hora_oficial_entrada'
 var calcula_automaticamente = true;
-const c_jornada_normal = '7:39';
+const c_jornada_normal = '7:15';
 const c_descuento_entrada = 15;
 const c_incremento_salida = 15;
 const c_reduccion_jornada = '00:00';
