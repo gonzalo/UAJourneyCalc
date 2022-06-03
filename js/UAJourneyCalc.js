@@ -14,28 +14,28 @@ const horas_por_defecto = {
     'manyana': {
       'entrada_oficial': '8:00',
       'entrada_real': '8:15',
-      'salida_oficial': '14:36',
-      'salida_real': '14:21'
+      'salida_oficial': '14:45',
+      'salida_real': '14:30'
     },
     'tarde': {
       'entrada_oficial': '16:00',
       'entrada_real': '16:15',
-      'salida_oficial': '19:15',
-      'salida_real': '19:00'
+      'salida_oficial': '18:30',
+      'salida_real': '18:15'
     }
   },
   'turno_tarde': {
     'manyana': {
-      'entrada_oficial': '9:45',
-      'entrada_real': '10:00',
+      'entrada_oficial': '10:30',
+      'entrada_real': '10:45',
       'salida_oficial': '13:00',
       'salida_real': '12:45'
     },
     'tarde': {
       'entrada_oficial': '14:00',
       'entrada_real': '14:15',
-      'salida_oficial': '20:36',
-      'salida_real': '20:21'
+      'salida_oficial': '20:45',
+      'salida_real': '20:30'
     },
   }
 };
@@ -426,7 +426,7 @@ function updateEvent(caller_id) {
       break;
     case '#hora_oficial_salida_tarde':
       hora_real_salida_tarde = new Date(hora_oficial_salida_tarde); //asignamos antes de restarle el tiempo de fichaje
-      hora_real_salida_tarde.setMinutes(hora_real_salida_tarde.getMinutes() + incremento_salida);
+      hora_real_salida_tarde.setMinutes(hora_real_salida_tarde.getMinutes() - incremento_salida);
       $('#hora_real_salida_tarde').val($.format.date(hora_real_salida_tarde, 'HH:mm'));
 
       if (calcula_automaticamente)
@@ -441,7 +441,7 @@ function updateEvent(caller_id) {
 
     case '#hora_real_salida_tarde':
       hora_oficial_salida_tarde = new Date(hora_real_salida_tarde); //asignamos antes de restarle el tiempo de fichaje
-      hora_oficial_salida_tarde.setMinutes(hora_oficial_salida_tarde.getMinutes() - incremento_salida);
+      hora_oficial_salida_tarde.setMinutes(hora_oficial_salida_tarde.getMinutes() + incremento_salida);
       $('#hora_oficial_salida_tarde').val($.format.date(hora_oficial_salida_tarde, 'HH:mm'));
 
       if (calcula_automaticamente)
